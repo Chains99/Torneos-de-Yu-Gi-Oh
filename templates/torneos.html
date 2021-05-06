@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Torneos</title>
+</head>
+<body>
+    <header>
+        <h1>Página de torneos</h1>
+    </header>
+    <a href="crear_torneo">Crear Nuevo Torneo</a>
+    <h2>Torneos no iniciados</h2>
+    <table border="2">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Dirección</th>
+                <th>Fecha y Hora de Inicio</th>
+                <th>Opción</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for torneo in torneos_no_iniciados %}
+            <tr>
+                <td>{{torneo.idt}}</td>
+                <td>{{torneo.nombret}}</td>
+                <td>{{torneo.direcciont}}</td>
+                <td>{{torneo.fecha_hora_de_iniciot}}</td>
+                <td><a href="{% url 'editar_torneo' torneo.idt %}">Editar</a> <a href="{% url 'eliminar_torneo' torneo.idt %}">Eliminar</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>    
+    <h2>Torneos iniciados</h2>
+    <table border="2">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Dirección</th>
+                <th>Fecha y Hora de Inicio</th>
+                <th>Opción</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for torneo in torneos_iniciados %}
+            <tr>
+                <td>{{torneo.idt}}</td>
+                <td>{{torneo.nombret}}</td>
+                <td>{{torneo.direcciont}}</td>
+                <td>{{torneo.fecha_hora_de_iniciot}}</td>
+                <td><a href="{% url 'editar_torneo' torneo.idt %}">Editar</a> <a href="{% url 'eliminar_torneo' torneo.idt %}">Eliminar</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>    
+</body>
+</html>

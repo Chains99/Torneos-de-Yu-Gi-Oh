@@ -1,0 +1,5 @@
+<form method="post"> {% csrf_token %}
+    <h1>Seguro desea eliminar el torneo {{object.idt}} y todo su contenido?</h1>
+    <button type="submit">Confirmar</button>
+    <a href="{% url 'torneos' %}">Cancelar</a>
+</form>

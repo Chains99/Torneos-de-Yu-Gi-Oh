@@ -1,40 +1,20 @@
-<!DOCTYPE html>
+<!-- This template of the HomePage is a child of MainTemplate -->
+{% extends "_main_template.html" %}
+
+<!-- Load static files -->
 {% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Principal</title>
-    <meta name="description" content="Sitio oficial para la organizacion y promoción de torneos de Yu-Gi-Oh!">
-    <meta name="keywords" content="Yu-Gi-Oh!, yugioh, torneo, jugador, deck, arquetipo, partida">
-</head>
-<body>
-    <header>
-        <h1>Página Oficial de la Organización Mundial de Yu-Gi-Oh!</h1>
-    </header>
 
-    <nav>
-        <ul>
-            <li>
-                <a href="">Torneos</a>
-            </li>
-            <li>
-                <a href="">Decks y arquetipos</a>
-            </li>
-            <li>
-                <a href="">Consultas</a>
-            </li>
-            <li>
-                <a href="">Iniciar sesión</a>
-            </li>
-        </ul>
-    </nav>
+<!-- Put title -->
+{%block title%}
+Inicio
+{% endblock %}
 
-    <img src="{% static 'imagenes/yugioh_imagen.png' %}"> 
-
-    <section>
-        <article>
+<!-- Put content -->
+{% block content %}
+    <img src="{% static 'img/yugioh_imagen.png' %}">
+    
+    <section class="container">
+        <article class="row">
             <h1>Historia de los torneso de Yu-Gi-Oh!</h1>
             <p>Yu-Gi-Oh! es un juego de cartas coleccionables de origen japonés basado en el juego ficticio de Duelo de Monstruos.</p>
             <p>El juego de cartas ha alcanzado tal popularidad que se planifican eventos internacionales en los que jugadores de cualquier edad y nivel pueden competir juntos en torneos y hacer amigos nuevos, ver cartas nuevas y alardear de nuevas estrategias. Hay eventos de Yu-Gi-Oh! para cualquier clase de Duelista, desde pequeños torneos hasta eventos masivos internacionales donde los mejores Duelistas del mundo juegan para conseguir grandes premios.</p>
@@ -44,6 +24,4 @@
             <p>Un arquetipo es la estructura del Deck, las cartas de un mismo arquetipo comparten el inicio de sus nombres y si un Deck tiene más del 50 % de cartas de un mismo arquetipo X entonces se dice que es de arquetipo X, sino se dice que es Mixto y es un arquetipo adicional. Hay una gran variedad de arquetipos, y la mayoría tiene un estilo de juego distinto.</p>
         </article>
     </section>
-
-</body>
-</html>
+{% endblock %}

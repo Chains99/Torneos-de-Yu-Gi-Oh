@@ -19,15 +19,17 @@ from aplicaciones.principal.views import inicio_principal
 from aplicaciones.torneos.views import TorneoList,TorneoCreate,TorneoUpdate,TorneoDelete
 from django.contrib.auth.views import LoginView,LogoutView
 from aplicaciones.users.views import UserCreate
+from aplicaciones.admins_torneos.views import AdminTorneosCreate
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',inicio_principal,name='index'),
-    path('torneos',TorneoList.as_view(),name='torneos'),
+    path('torneos/',TorneoList.as_view(),name='torneos'),
     path('crear_torneo/',TorneoCreate.as_view(),name='crear_torneo'),
     path('editar_torneo/<str:pk>',TorneoUpdate.as_view(),name='editar_torneo'),
     path('eliminar_torneo/<str:pk>',TorneoDelete.as_view(),name='eliminar_torneo'),
-    path('registrar_usuario',UserCreate.as_view(),name='registrar_usuario'),
+    path('registrar_usuario/',UserCreate.as_view(),name='registrar_usuario'),
     path('login/',LoginView.as_view(template_name='login.html'),name='login'),
-    path('logout/',LogoutView.as_view(template_name='logout.html'),name='logout')
+    path('logout/',LogoutView.as_view(template_name='logout.html'),name='logout'),
+    path('registrar_admin_torneos/',AdminTorneosCreate.as_view(),name='registrar_admin_torneos')
 ]

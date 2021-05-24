@@ -6,6 +6,6 @@ class TorneoForm(forms.ModelForm):
         model=Torneo
         fields='__all__'
         labels={'idt':'ID (No más de 4 caracteres)',
-        'nombret':'Nombre (No más de 20 caracteres)',
-        'direcciont':'Dirección (No más de 25 caracteres)',
+        'nombret':'Nombre (No más de 100 caracteres)',
+        'direcciont':'Dirección (No más de 100 caracteres)',
         'fecha_hora_de_iniciot': 'Fecha y hora de inicio (Formato AAAA-MM-DD HH:MM)'}

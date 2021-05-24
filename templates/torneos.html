@@ -10,7 +10,10 @@
     <header>
         <h1>Página de torneos</h1>
     </header>
-    <a href="crear_torneo">Crear Nuevo Torneo</a>
+
+    {% if perms.torneos.add_torneo %}
+        <a href="{% url 'crear_torneo' %}">Crear Nuevo Torneo</a>
+    {% endif %}
     <h2>Torneos no iniciados</h2>
     <table border="2">
         <thead>
@@ -29,7 +32,14 @@
                 <td>{{torneo.nombret}}</td>
                 <td>{{torneo.direcciont}}</td>
                 <td>{{torneo.fecha_hora_de_iniciot}}</td>
-                <td><a href="{% url 'editar_torneo' torneo.idt %}">Editar</a> <a href="{% url 'eliminar_torneo' torneo.idt %}">Eliminar</a></td>
+                <td>
+                    {% if perms.torneos.change_torneo %}
+                        <a href="{% url 'editar_torneo' torneo.idt %}">Editar</a>
+                    {% endif %}
+                    {% if perms.torneos.delete_torneo %}
+                        <a href="{% url 'eliminar_torneo' torneo.idt %}">Eliminar</a>
+                    {% endif %}
+                </td>
             </tr>
             {% endfor %}
         </tbody>
@@ -52,7 +62,14 @@
                 <td>{{torneo.nombret}}</td>
                 <td>{{torneo.direcciont}}</td>
                 <td>{{torneo.fecha_hora_de_iniciot}}</td>
-                <td><a href="{% url 'editar_torneo' torneo.idt %}">Editar</a> <a href="{% url 'eliminar_torneo' torneo.idt %}">Eliminar</a></td>
+                <td>
+                    {% if perms.torneos.change_torneo %}
+                        <a href="{% url 'editar_torneo' torneo.idt %}">Editar</a>
+                    {% endif %}
+                    {% if perms.torneos.delete_torneo %}
+                        <a href="{% url 'eliminar_torneo' torneo.idt %}">Eliminar</a>
+                    {% endif %}
+                </td>
             </tr>
             {% endfor %}
         </tbody>

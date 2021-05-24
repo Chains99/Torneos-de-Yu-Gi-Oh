@@ -40,6 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'aplicaciones.principal',
     'aplicaciones.torneos',
+    'aplicaciones.users',
+    'aplicaciones.admins_torneos',
+    'aplicaciones.admins_partida',
+    'betterforms'
 ]
 
 MIDDLEWARE = [
@@ -81,7 +85,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'yugioh_database',
         'USER': 'root',
-        'PASSWORD':'Salario123-',
+        'PASSWORD':'Ariel.1199',
         'HOST': 'localhost',
         'PORT':3306,
     }

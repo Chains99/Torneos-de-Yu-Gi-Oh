@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'aplicaciones.users',
     'aplicaciones.admins_torneos',
     'aplicaciones.admins_partida',
+    'aplicaciones.queries',
     'betterforms'
 ]
 

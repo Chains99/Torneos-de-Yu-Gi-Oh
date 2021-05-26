@@ -11,17 +11,20 @@ Inicio
 
 <!-- Put content -->
 {% block content %}
-    <img src="{% static 'img/yugioh_imagen.png' %}">
-    
+    <div class="text-center bg-yugioh main-img">
+        <img class="img-responsive" src="{% static 'img/yugioh_imagen.png' %}">
+    </div>
     <section class="container">
         <article class="row">
-            <h1>Historia de los torneso de Yu-Gi-Oh!</h1>
-            <p>Yu-Gi-Oh! es un juego de cartas coleccionables de origen japonés basado en el juego ficticio de Duelo de Monstruos.</p>
-            <p>El juego de cartas ha alcanzado tal popularidad que se planifican eventos internacionales en los que jugadores de cualquier edad y nivel pueden competir juntos en torneos y hacer amigos nuevos, ver cartas nuevas y alardear de nuevas estrategias. Hay eventos de Yu-Gi-Oh! para cualquier clase de Duelista, desde pequeños torneos hasta eventos masivos internacionales donde los mejores Duelistas del mundo juegan para conseguir grandes premios.</p>
-            <p>Yu-Gi-Oh! es un juego de cartas de batalla en el que cada jugador toma cartas de sus respectivos Decks y toman turnos en los que se juegan las cartas en el campo de juego.</p>
-            <p>Los jugadores se inscriben en los torneos que estén interesados.</p>
-            <p>Una partida de Yu-Gi-Oh! se lleva a cabo entre dos jugadores, cada uno de los cuales usa un Deck (mazo de cartas) que utilizará para intentar derrotar a su adversario.</p>
-            <p>Un arquetipo es la estructura del Deck, las cartas de un mismo arquetipo comparten el inicio de sus nombres y si un Deck tiene más del 50 % de cartas de un mismo arquetipo X entonces se dice que es de arquetipo X, sino se dice que es Mixto y es un arquetipo adicional. Hay una gran variedad de arquetipos, y la mayoría tiene un estilo de juego distinto.</p>
+            <div class="col-12">
+                <h1 class="text-center">Historia de los torneos de Yu-Gi-Oh!</h1>
+                <p>Yu-Gi-Oh! es un juego de cartas coleccionables de origen japonés basado en el juego ficticio de Duelo de Monstruos.</p>
+                <p>El juego de cartas ha alcanzado tal popularidad que se planifican eventos internacionales en los que jugadores de cualquier edad y nivel pueden competir juntos en torneos y hacer amigos nuevos, ver cartas nuevas y alardear de nuevas estrategias. Hay eventos de Yu-Gi-Oh! para cualquier clase de Duelista, desde pequeños torneos hasta eventos masivos internacionales donde los mejores Duelistas del mundo juegan para conseguir grandes premios.</p>
+                <p>Yu-Gi-Oh! es un juego de cartas de batalla en el que cada jugador toma cartas de sus respectivos Decks y toman turnos en los que se juegan las cartas en el campo de juego.</p>
+                <p>Los jugadores se inscriben en los torneos que estén interesados.</p>
+                <p>Una partida de Yu-Gi-Oh! se lleva a cabo entre dos jugadores, cada uno de los cuales usa un Deck (mazo de cartas) que utilizará para intentar derrotar a su adversario.</p>
+                <p>Un arquetipo es la estructura del Deck, las cartas de un mismo arquetipo comparten el inicio de sus nombres y si un Deck tiene más del 50 % de cartas de un mismo arquetipo X entonces se dice que es de arquetipo X, sino se dice que es Mixto y es un arquetipo adicional. Hay una gran variedad de arquetipos, y la mayoría tiene un estilo de juego distinto.</p>
+            </div>
         </article>
     </section>
 {% endblock %}

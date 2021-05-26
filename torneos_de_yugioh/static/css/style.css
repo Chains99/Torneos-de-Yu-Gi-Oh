@@ -9,6 +9,20 @@
     background-color: #01060a !important;
 }
 
+.bg-yugioh-bg{
+    background-color: #040e14 !important;
+}
+
+.border-60{
+    border-radius: 0.60rem;
+}
+.main-img
+{
+    margin-bottom: 2%;
+}
+.footer{
+    margin-top:2%;
+}
 ul 
 {
     padding:0;

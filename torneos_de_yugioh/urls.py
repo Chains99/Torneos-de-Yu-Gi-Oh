@@ -29,7 +29,7 @@ urlpatterns = [
     path('editar_torneo/<str:pk>',TorneoUpdate.as_view(),name='editar_torneo'),
     path('eliminar_torneo/<str:pk>',TorneoDelete.as_view(),name='eliminar_torneo'),
     path('registrar_usuario/',UserCreate.as_view(),name='registrar_usuario'),
-    path('login/',LoginView.as_view(template_name='login.html'),name='login'),
-    path('logout/',LogoutView.as_view(template_name='logout.html'),name='logout'),
+    path('ingresar/',LoginView.as_view(template_name='login.html'),name='login'),
+    path('cerrar_sesion/',LogoutView.as_view(template_name='logout.html'),name='logout'),
     path('registrar_admin_torneos/',AdminTorneosCreate.as_view(),name='registrar_admin_torneos')
 ]

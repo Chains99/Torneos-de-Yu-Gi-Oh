@@ -1,12 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Logout</title>
-</head>
-<body>
-   <h1>Ha cerrado sesión correctamanete</h1>
-</body>
-</html>
+{% extends "_auth_template.html" %}
+
+{% block title %}
+Sesión Cerrada
+{% endblock %}
+
+{% block content %}
+    <div class="card card-block mt-5 text-white bg-yugioh border border-light border-60">
+        <div class="card-header">
+            <h1 class="card-title">Ha cerrado sesión correctamanete</h1>
+        </div>
+        <div class="card-body">
+            <a class="text-white" href="{% url 'index' %}"> << Volver al Inicio</a>
+        </div>
+    </div>
+{% endblock %}

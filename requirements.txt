@@ -1,0 +1,4 @@
+Django==3.2.3
+django-betterforms==1.2
+mysqlclient==2.0.3
+six==1.16.0

@@ -14,17 +14,11 @@
 
         <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">  
 
-        <!-- * Load CSS files * -->
-        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-        <link rel="stylesheet" href="{% static 'css/style.css' %}"> 
+	    <link rel="stylesheet" href="{% static 'css/style-page.css' %}">
 
         <!-- Block to put other CSS files on child template-->
         {% block css %}
         {% endblock %}
-
-        <!-- * Load JS files * -->
-        <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
-        <script src="{% static 'js/bootstrap.min.js' %}"></script>
 
         <!-- Block to put other JS files on child template-->
         {% block js %}
@@ -41,5 +35,12 @@
 
         <!-- * Footer of a page * -->
         {% include '_footer.html' %}
+
+        <script src="{% static 'js/jquery.min.js' %}"></script>
+  	    <script src="{% static 'js/popper.js' %}"></script>
+  	    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  	    <script src="{% static 'js/main.js' %}"></script>
+        {% block finalJS %}
+        {% endblock %}
     </body>
 </html>

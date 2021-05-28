@@ -1,0 +1,63 @@
+<!-- This template of the HomePage is a child of MainTemplate -->
+{% extends "_main_template.html" %}
+
+<!-- Load static files -->
+{% load static %}
+
+<!-- Put title -->
+{%block title%}
+Desarrolladores
+{% endblock %}
+
+<!-- Put content -->
+{% block content %}
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-2"></div>
+            <div class="col-8">
+                <div class="d-flex">
+                    <div class="w-100 text-center">
+                        <h3 class="mb-4">Desarrolladores</h3>
+                    </div>
+                </div>
+                <ul class="dev">
+                    <li class="dev-item p-4 mb-4 d-flex rounded">
+                        <img class="rounded-pill" src="{% static 'img/desarrolladores/toledo.jpg' %}"/>
+                        <div class="dev-item-content">
+                            <p>Carlos Toledo Silva</p>
+                            <p>C-311</p>
+                            <p><a target="_blank" href="https://t.me/Sinsajo24601">@Sinsajo24601</a></p>
+                        </div>
+                    </li>
+                    <li class="dev-item p-4 mb-4 d-flex rounded">
+                        <img class="rounded-pill"  src="{% static 'img/desarrolladores/ariel.jpg' %}"/>
+                        <div class="dev-item-content">
+                            <p>Ariel Alfonso Triana Pérez</p>
+                            <p>C-311</p>
+                            <p><a target="_blank"  href="https://t.me/atp_ariel">@atp_ariel</a></p>
+                        </div>
+                    </li>
+                    <li class="dev-item p-4 mb-4 d-flex rounded">
+                        <img class="rounded-pill"  src="{% static 'img/desarrolladores/rocio.jpg' %}"/>
+                        <div class="dev-item-content">
+                            <p>Rocio Ortíz Gancedo</p>
+                            <p>C-311</p>
+                            <p><a target="_blank"  href="https://t.me/rocioog">@rocioog</a></p>
+                        </div>
+                    </li>
+                    <li class="dev-item p-4 mb-4 d-flex rounded">
+                        <img class="rounded-pill"  src="{% static 'img/desarrolladores/aylin.jpg' %}"/>
+                        <div class="dev-item-content">
+                            <p>Aylín Álvarez Santos</p>
+                            <p>C-312</p>
+                            <p><a target="_blank"  href="https://t.me/Chains99">@Chains99</a></p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-2"></div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Decks</title>
+</head>
+<body>
+    <header>
+        <h1>Mis Decks</h1>
+    </header>
+
+    <div>
+        <nav>
+        <ul>
+            <li>
+                <a href="{% url 'decks' %}">Mis decks</a>
+            </li>
+            <li>
+                <a href="{% url 'editar_info' %}">Mi información personal</a>
+            </li>
+             <li>
+                <a href="{% url 'torneos_inscrito' %}">Mis inscripciones</a>
+            </li>
+        </ul>
+        </nav>
+    </div>
+
+    <div>
+    {% if perms.decks.add_deck %}
+        <a href="{% url 'crear_deck' %}">Crear Nuevo Deck</a>
+    {% endif %}
+    <h2>Decks creados</h2>
+    <table border="2">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Cantidad de cartas mazo principal</th>
+                <th>Cantidad de cartas mazo alternativo</th>
+                <th>Cantidad de cartas mazo extra</th>
+                <th>Arquetipo principal</th>
+                <th>Arquetipo adicional</th>
+                <th>Opción</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for deck in decks %}
+            <tr>
+                <td>{{deck.nombred}}</td>
+                <td>{{deck.cantidad_cartas_mazo}}</td>
+                <td>{{deck.cantidad_cartas_mazo_alternativo}}</td>
+                <td>{{deck.cantidad_cartas_mazo_extra}}</td>
+                <td>{{deck.ida_principal.nombrea}}</td>
+                <td>{{deck.ida_adicional.nombrea}}</td>
+                <td>
+                    {% if perms.decks.change_deck %}
+                        <a href="{% url 'editar_deck' deck.idd %}">Editar</a>
+                    {% endif %}
+                    {% if perms.decks.delete_deck %}
+                        <a href="{% url 'eliminar_deck' deck.idd %}">Eliminar</a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>    
+</body>
+</html>

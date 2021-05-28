@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Torneos inscrito</title>
+</head>
+<body>
+
+    <div>
+        <nav>
+        <ul>
+            <li>
+                <a href="{% url 'decks' %}">Mis decks</a>
+            </li>
+            <li>
+                <a href="{% url 'editar_info' %}">Mi información personal</a>
+            </li>
+             <li>
+                <a href="{% url 'torneos_inscrito' %}">Mis inscripciones</a>
+            </li>
+        </ul>
+        </nav>
+    </div>
+
+    <div>
+    <header>
+        <h1>Torneos en los que estas inscrito</h1>
+    </header>
+
+    <table border="2">
+        <thead>
+            <tr>
+                <th>ID Torneo</th>
+                <th>Nombre</th>
+                <th>Dirección</th>
+                <th>Fecha y Hora de Inicio</th>
+                <th>Deck</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for participacion in participaciones %}
+            <tr>
+                <td>{{participacion.idt}}</td>
+                <td>{{particioacion.idt.nombret}}</td>
+                <td>{{participacion.idt.direcciont}}</td>
+                <td>{{particioacion.idt.fecha_hora_de_iniciot}}</td>
+                <td>{{participacion.idd.nombred}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>    
+    </div>
+</body>
+</html>

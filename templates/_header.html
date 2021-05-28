@@ -1,47 +1,53 @@
-<header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-yugioh">
-        <a class="a-with-decor" href="{% url 'index' %}"><h1 class="navbar-brand">Organización Mundial de Yu-Gi-Oh!</h1></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-toogle" aria-controls="navbar-toogle" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+<div class="bg-yugioh">
+<header class="ftco-section">
+	<div class="container">
+		<nav class="navbar navbar-expand-lg ftco_navbar ftco-navbar-light" id="ftco-navbar">
+	        <div class="container">
+		       	<a class="navbar-brand" href="{% url 'index'%}">Torneos de Yu-gi-oh!</a>
+		        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+		            <span class="fa fa-bars"></span> Menu
+		        </button>
+		        <div class="collapse navbar-collapse" id="ftco-nav">
+		            <ul class="navbar-nav ml-auto mr-md-3">
+		        	    <li class="nav-item active">                    
+                            <a class="nav-link" href="{% url 'index'%}">Inicio</a>
+                        </li>
+		        	    <li class="nav-item">
+                            <a class="nav-link" href="{% url 'torneos' %}">Torneos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Arquetipos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Consultas</a>
+                        </li>
 
-        <div class="collapse navbar-collapse" id="navbar-toogle">
-            <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-                <li class="nav-item active">
-                    <a class="nav-link" href="{% url 'index'%}">Inicio <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'torneos' %}">Torneos</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Arquetipos</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Consultas</a>
-                </li>
+                        {% if perms.torneos.add_admintorneos %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'registrar_admin_torneos' %}">Nuevo Admin de Torneos</a>
+                            </li>
+                        {% endif %}
 
-                {% if perms.torneos.add_admintorneos %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'registrar_admin_torneos' %}">Registrar nuevo administrador de torneos</a>
-                    </li>
-                {% endif %}
-
-                {% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Mi perfil</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'logout' %}">Cerrar sesión</a>               
-                    </li>
-                {% else %}
-                    <li class="nav-item border border-light border-60">
-                        <a class="nav-link" href="{% url 'login' %}">Iniciar sesión</a>
-                    </li>
-                    <li class="nav-item border border-light border-60" style="margin-left: 0.5rem;">
-                        <a class="nav-link" href="{% url 'registrar_usuario' %}">Registrarse</a>
-                    </li>
-                {% endif %}
-            </ul>
-        </div>
-    </nav>
+                        {% if user.is_authenticated %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'decks' %}">Mi perfil</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'logout' %}">Cerrar sesión</a>               
+                            </li>
+                        {% else %}
+                            <li class="nav-item border border-dark border-60">
+                                <a class="nav-link" href="{% url 'login' %}">Ingresar</a>
+                            </li>
+                            <li class="nav-item border border-dark border-60 last" >
+                                <a class="nav-link" href="{% url 'registrar_usuario' %}">Crear cuenta</a>
+                            </li>
+                        {% endif %}
+		            </ul>
+		        </div>
+		    </div>
+		</nav>
+    <!-- END nav -->
+    </div>
 </header>
+</div>

@@ -10,7 +10,9 @@ Los requerimientos de Python están especificados en el archivo `requeriments.tx
 * mysqlclient 2.0.3
 * six 1.16.0
 * MySQL Server 8.0.24
-
+* django-composite-foreignkey 1.1.0
+* django-compositepk-model 1.0.2
+  
 ## NOTA
 
 Al descargar `django-betterforms` debe modificar el archivo `multiform.py`:

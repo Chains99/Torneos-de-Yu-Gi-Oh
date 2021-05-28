@@ -6,38 +6,49 @@
 
 <!-- Put title -->
 {%block title%}
-Ingreso
+Ingresar
 {% endblock %}
 
 {% block content %}
-    <div class="justify-content-center mt-5">
-        <div class="card card-block text-center text-white bg-yugioh border border-light p-2">
-            <div class="card-header">
-                <h1 class="card-title">Ingresar</h1>
-            </div>
-            <div class="card-body">
-                <form method="post">  {% csrf_token %}
-                    {{form.as_p}}
+    <section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-12 col-lg-10">
+					<div class="wrap d-md-flex">
+                        <img class="img" src="{% static 'img/yugioh-login.jpg' %}"/>
+					<div class="login-wrap p-4 p-md-5">
+			      	    <div class="d-flex">
+			      		    <div class="w-100 text-center">
+			      			    <h3 class="mb-4">Ingresar</h3>
+			      		    </div>
+			        	</div>
+						<form class="signin-form" method="post">
+                            {% csrf_token %}
+                            {{ form.non_field_errors }}
+			      		    <div class="form-group mb-3">
+                                {{ form.username.errors }}
+			      			    <label class="label" for="{{ form.username.id_for_label }}">Nombre de Usuario</label> 
+			      			    <input type="text" class="form-control rounded-pill" name="{{ form.username.html_name }}" placeholder="Ej: atp_ariel" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" required="" id="{{ form.username.id_for_label }}">
+			      		    </div>
+		                    <div class="form-group mb-3">
+                                {{ form.password.errors }}
+		            	        <label class="label" for="{{ form.password.id_for_label }}">Contraseña</label>
+                                <input type="password" class="form-control rounded-pill" placeholder="Escribe tu contraseña" name="{{ form.password.html_name }}" autocomplete="current-password" required="" id="{{ form.password.id_for_label }}">
+		                    </div>
+		                    <div class="form-group">
+		            	        <button type="submit" class="form-control btn btn-primary rounded-pill submit px-3">Ingresar</button>
+		                    </div>
+		                </form>
+                        <div class="text">
+		                    <p class="text-center">¿No tienes una cuenta? <a href="{% url 'registrar_usuario' %}">Crear cuenta</a></p>
+		                    <p class="text-center"><a href="{% url 'index' %}"> << Volver al Inicio </a></p>
+                        </div>
+			        </div>
 
-                    <!-- <div class="form-group text-left">
-                        <label for="Username">Nombre de Usuario:</label>
-                        <input type="text" class="form-control"/>
-                    </div>
-
-                    <div class="form-group text-left">
-                        <label for="Password">Contraseña:</label>
-                        <input type="password" class="form-control"/>
-                    </div>
-                    -->
-                    <div class="text-right">
-                        <button type="submit" class="btn btn-primary">Ok</button>
-                    </div>
-                </form>
-            </div>
-            <div class="card-footer text-left">
-                <p> << Regresar al <a class="text-white" href="{% url 'index' %}">Inicio</a></p>
-            </div>
-        </div>
-    </div>
+		            </div>
+				</div>
+			</div>
+		</div>
+	</section>
 {% endblock %}
 

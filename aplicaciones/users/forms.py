@@ -1,18 +1,22 @@
-from django.forms import ModelForm,EmailField,CharField,PasswordInput
-from betterforms.multiform import MultiModelForm
+from django.forms import ModelForm,CharField,PasswordInput
 from django.contrib.auth.forms import UserCreationForm
+from betterforms.multiform import MultiModelForm
 from .models import JugadorUser,Jugador,Municipio,Provincia
 
-class UserRegisterForm(ModelForm):
-    email=EmailField()
+class UserRegisterForm(UserCreationForm):
     password1=CharField(label='Contraseña',widget=PasswordInput)
-    password2=CharField(label='Confirmar contraseña',widget=PasswordInput)
+    password2=CharField(label='Contraseña',widget=PasswordInput)
 
     class Meta:
         model=JugadorUser
         fields=['username','email','password1','password2']
         help_texts={k:"" for k in fields}
-        labels={'username': 'Alias'}
+        labels={
+            'username': 'Alias',
+            'email':'Correo electrónico',
+            'password1':'Contraseña',
+            'password2':'Confirmar contraseña'
+        }
 
 class JugadorRegisterForm(ModelForm):
     class Meta:
@@ -33,7 +37,7 @@ class ProvinciaRegisterForm(ModelForm):
     class Meta:
         model=Provincia
         fields=['nombrep']
-        labels={'mombrep':'Provincia'}
+        labels={'nombrep':'Provincia'}
 
 class JugadorUserRegisterForm(MultiModelForm):
     form_classes={
@@ -41,4 +45,11 @@ class JugadorUserRegisterForm(MultiModelForm):
         'jugador': JugadorRegisterForm,
         'provincia': ProvinciaRegisterForm,
         'municipio': MunicipioRegisterForm   
+    }
+
+class JugadorUserEditForm(MultiModelForm):
+    form_classes={
+        'jugador':JugadorRegisterForm,
+        'provincia':ProvinciaRegisterForm,
+        'municipio':MunicipioRegisterForm
     } 

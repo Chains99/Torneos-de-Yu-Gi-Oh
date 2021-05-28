@@ -5,12 +5,26 @@ Sesión Cerrada
 {% endblock %}
 
 {% block content %}
-    <div class="card card-block mt-5 text-white bg-yugioh border border-light border-60">
-        <div class="card-header">
-            <h1 class="card-title">Ha cerrado sesión correctamanete</h1>
-        </div>
-        <div class="card-body">
-            <a class="text-white" href="{% url 'index' %}"> << Volver al Inicio</a>
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div class="wrap d-md-flex p-4 p-md-5">
+                    <div class="login-wrap">
+                        <div class="d-flex">
+                            <div class="w-100 text-center">
+                                <h3 class="mb-4">Ha cerrado sesión correctamente</h3>
+                            </div>
+                        </div>
+                        <div class="text">
+                            <p class="text-center"><a href="{% url 'index' %}"> << Volver al Inicio </a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2"></div>
         </div>
     </div>
+</section>
 {% endblock %}

@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from aplicaciones.principal.views import inicio_principal, Index, creditos
+from aplicaciones.principal.views import Index, creditos
 from aplicaciones.torneos.views import TorneoList,TorneoCreate,TorneoUpdate,TorneoDelete
 from django.contrib.auth.views import LoginView,LogoutView
 from aplicaciones.users.views import UserCreate,UserUpdate,TorneoUserList
@@ -27,6 +27,7 @@ from aplicaciones.eventos.views import crearParticipante,listar,editarLugarAlcan
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',Index.as_view(),name='index'),
+    path('desarrolladores/',creditos,name='creditos'),
     path('torneos/',TorneoList.as_view(),name='torneos'),
     path('crear_torneo/',TorneoCreate.as_view(),name='crear_torneo'),
     path('editar_torneo/<str:pk>',TorneoUpdate.as_view(),name='editar_torneo'),
@@ -42,7 +43,6 @@ urlpatterns = [
     path('editar_deck/<int:pk>',DeckUpdate.as_view(),name='editar_deck'),
     path('eliminar_deck/<int:pk>',DeckDelete.as_view(),name='eliminar_deck'),
     path('torneos_inscrito/',TorneoUserList.as_view(),name='torneos_inscrito'),
-    path('desarrolladores/',creditos,name='creditos')
     path('torneos/inscripcion/<str:pk>',crearParticipante,name='inscripcion'),
     path('torneos/torneo/<str:pk>',listar,name='torneo'),
     path('torneos/torneo/editar_posicion/<str:pk>',editarLugarAlcanzado,name='editar_posicion'),

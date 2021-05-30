@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Torneo</title>
+</head>
+<body>
+    <header>
+        <h1>Detalles de la ronda {{idr}} del torneo {{torneo.nombret}}({{torneo.idt}})</h1>
+    </header>
+
+    <h2>Participantes</h2>
+    <table border="2">
+        <thead>
+            <tr>
+                <th>Nombre de usuario</th>
+                <th>Nombre y apellidos</th>
+                <th>Deck utilizado</th>
+                <th>Supera la ronda</th>
+                {% if perms.eventos.change_participa%}
+                    <th>Editar si supera la ronda</th>
+                {% endif %}
+                {% if perms.eventos.delete_participa%}
+                    <th>Eliminar participacion</th>
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for participante,clave in participantes_claves %}
+            <tr>
+                <td>{{participante.participante.idj.idj}}</td>
+                <td>{{participante.participante.idj.nombrej}}</td>
+                <td>{{participante.participante.idd.nombred}}</td>
+                <td>{{participante.triunfa}}</td>
+                {% if perms.eventos.change_participa %}                    
+                    <td><a href="{% url 'editar_participacion' clave %}">Editar</a></td>
+                {% endif %}
+                 {% if perms.eventos.delete_participa%}
+                    <td><a href="{% url 'eliminar_participacion' clave %}">Eliminar</a></td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <h2>Partidas</h2>
+    
+    {% if perms.eventos.add_partida %}
+        <a href="{% url 'crear_partida' torneo_ronda %}">Agregar partida</a>
+    {% endif %} 
+
+    <table border="2">
+        <thead>
+            <tr>
+                <th>Jugador1</th>
+                <th>Resultado</th>
+                <th>Jugador2</th>
+                <th>Fecha y hora de inicio</th>
+                <th>Fecha y hora de finalización</th>
+                {% if perms.eventos.change_partida%}
+                    <th>Opción</th>
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for partida,clave in partidas_claves %}
+            <tr>
+                <td>{{partida.idj1}}</td>
+                <td>{{partida.resultado}}</td>
+                <td>{{partida.idj2}}</td>
+                <td>{{partida.fecha_hora_de_iniciop}}</td>
+                <td>{{partida.fecha_hora_de_finalizacionp}}</td>
+                {% if perms.eventos.change_partida %}                    
+                    <td>
+                        <a href="{% url 'editar_partida' clave %}">Editar</a>
+                        <a href="{% url 'eliminar_partida' clave %}">Eliminar</a>
+                    </td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+</body>
+</html>

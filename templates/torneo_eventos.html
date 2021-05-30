@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Torneo</title>
+</head>
+<body>
+    <header>
+        <h1>Detalles de {{torneo.nombret}}({{torneo.idt}})</h1>
+    </header>
+
+    <h2>Participantes</h2>
+
+    {% if perms.eventos.add_participa %}
+        <a href="{% url 'crear_participacion' torneo.idt %}">Agregar participante a ronda</a>
+    {% endif %} 
+    
+
+    <table border="2">
+        <thead>
+            <tr>
+                <th>Nombre de usuario</th>
+                <th>Nombre y apellidos</th>
+                <th>Deck utilizado</th>
+                <th>Lugar alcanzado</th>
+                {% if perms.eventos.change_participante %}
+                    <th>Editar lugar alcanzado</th>
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for participante,clave in participantes_claves %}
+            <tr>
+                <td>{{participante.idj.idj}}</td>
+                <td>{{participante.idj.nombrej}}</td>
+                <td>{{participante.idd.nombred}}</td>
+                <td>{{participante.lugar_alcanzado}}</td>
+                {% if perms.eventos.change_participante %}                    
+                    <td><a href="{% url 'editar_posicion' clave %}">Editar</a></td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Rondas</h2>
+
+    {% for ronda,clave in rondas_claves %}
+        <li><a href="{% url 'ronda' clave %}">{{ronda.idr}}</a></li>     
+    {% endfor %}
+
+
+</body>
+</html>

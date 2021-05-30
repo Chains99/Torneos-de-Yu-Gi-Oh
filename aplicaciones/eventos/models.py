@@ -6,11 +6,12 @@ from django.db.models.fields import related
 from aplicaciones.decks.models import Deck
 from aplicaciones.users.models import Jugador
 from aplicaciones.torneos.models import Torneo
+from django.db import connection
 
 class Participante(CPkModel):
-    idt = models.OneToOneField(Torneo, models.DO_NOTHING, db_column='IDT', primary_key=True)  # Field name made lowercase.
-    idj = models.OneToOneField(Jugador, models.DO_NOTHING, db_column='IDJ',primary_key=True)  # Field name made lowercase.
-    idd = models.ForeignKey(Deck, models.DO_NOTHING, db_column='IDD')  # Field name made lowercase.
+    idt = models.OneToOneField(Torneo, models.CASCADE, db_column='IDT', primary_key=True)  # Field name made lowercase.
+    idj = models.OneToOneField(Jugador, models.CASCADE, db_column='IDJ',primary_key=True)  # Field name made lowercase.
+    idd = models.ForeignKey(Deck, models.CASCADE, db_column='IDD')  # Field name made lowercase.
     lugar_alcanzado = models.CharField(db_column='Lugar_Alcanzado', max_length=25, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
@@ -19,9 +20,9 @@ class Participante(CPkModel):
         unique_together = (('idt', 'idj'),)
 
 class Participa(CPkModel):
-    idt = models.CharField(max_length=10,primary_key=True)  # Field name made lowercase.
+    idt = models.CharField(db_column='IDT',max_length=10,primary_key=True)  # Field name made lowercase.
     idr = models.CharField(db_column='IDR', max_length=10,primary_key=True)  # Field name made lowercase.
-    idj = models.CharField(max_length=150,primary_key=True)  # Field name made lowercase.
+    idj = models.CharField(db_column='IDJ',max_length=150,primary_key=True)  # Field name made lowercase.
     triunfa = models.CharField(db_column='Triunfa', max_length=1)  # Field name made lowercase.
 
     participante=CompositeForeignKey(Participante,on_delete=CASCADE,related_name='participante_ronda',to_fields={
@@ -29,6 +30,10 @@ class Participa(CPkModel):
         'idj':'idj'
     })
 
+    def my_delete(self,idt,idr,idj):
+        with connection.cursor() as cursor:
+            cursor.execute("DELETE FROM PARTICIPA WHERE IDT=%s AND IDR=%s AND IDJ=%s",[idt,idr,idj])
+       
     class Meta:
         managed = False
         db_table = 'participa'
@@ -37,7 +42,7 @@ class Participa(CPkModel):
 class Partida(CPkModel):
     idt = models.CharField(max_length=10,primary_key=True)  # Field name made lowercase.
     idr = models.CharField(max_length=10,primary_key=True)  # Field name made lowercase.
-    idp = models.CharField(db_column='IDP', max_length=10,primary_key=True)  # Field name made lowercase.
+    idp = models.IntegerField(db_column='IDP',primary_key=True)  # Field name made lowercase.
     idj1 = models.CharField(max_length=150)  # Field name made lowercase.
     idj2 = models.CharField(max_length=150)  # Field name made lowercase.
     resultado = models.CharField(db_column='Resultado', max_length=3, blank=True, null=True)  # Field name made lowercase.
@@ -56,6 +61,9 @@ class Partida(CPkModel):
         'idj':'idj2'
     })
 
+    def my_delete(self,idt,idr,idp):
+        with connection.cursor() as cursor:
+            cursor.execute("DELETE FROM PARTIDA WHERE IDT=%s AND IDR=%s AND IDP=%s",[idt,idr,idp])
 
     class Meta:
         managed = False

@@ -16,10 +16,13 @@ class ArquetipoPrincipalForm(forms.ModelForm):
         labels={'nombrea':'Arquetipo principal'}
 
 class ArquetipoAdicionalForm(forms.ModelForm):
+    def __init__(self,*args, **kwargs):
+        super(self.__class__,self).__init__(*args, **kwargs)
+        self.fields['nombrea'].required=False
     class Meta:
         model=Arquetipo
         fields=['nombrea']
-        labels={'nombrea':'Arquetipo adicional'}
+        labels={'nombrea':'Arquetipo adicional (opcional)'}
 
 class DeckCreateForm(MultiModelForm):
     form_classes={

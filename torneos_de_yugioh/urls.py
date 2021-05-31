@@ -22,7 +22,7 @@ from aplicaciones.users.views import UserCreate,UserUpdate,TorneoUserList
 from aplicaciones.admins_torneos.views import AdminTorneosCreate
 from aplicaciones.consultas.views import consultas_render
 from aplicaciones.admins_partidas.views import AdminPartidasCreate
-from aplicaciones.decks.views import DeckList,DeckCreate,DeckUpdate,DeckDelete,ArquetipoList
+from aplicaciones.decks.views import DeckList,DeckCreate,DeckUpdate,DeckDelete,ArquetipoList, render_arquetipo
 from aplicaciones.eventos.views import crearParticipante,listar,editarLugarAlcanzado,crearParticipcion,rondaInfo,editarParticipacion,eliminarParticipacion,crearPartida,editarPartida,eliminarPartida
 
 urlpatterns = [
@@ -56,5 +56,5 @@ urlpatterns = [
     path('torneos/torneo/ronda/partida/crear_partida/<str:pk>',crearPartida,name='crear_partida'),
     path('torneos/torneo/ronda/partida/editar/<str:pk>',editarPartida,name='editar_partida'),
     path('torneos/torneo/ronda/partida/eliminar/<str:pk>',eliminarPartida,name='eliminar_partida'),
-    path('arquetipos/',ArquetipoList.as_view(),name='arquetipos')
+    path('arquetipos/',render_arquetipo,name='arquetipos')
 ]

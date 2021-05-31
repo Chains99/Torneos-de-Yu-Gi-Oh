@@ -1,32 +1,70 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arquetipos</title>
-</head>
-<body>
-    <header>
-        <h1>Página de Arquetipos</h1>
-    </header>
+<!-- This template of the HomePage is a child of MainTemplate -->
+{% extends "_main_template.html" %}
 
-    <table border="2">
-        <thead>
-            <tr>
-                <th>ID Arquetipo</th>
-                <th>Nombre de Arquetipo</th>
-                <th>Tier</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for arquetipo in object_list %}
-            <tr>
-                <td>{{arquetipo.ida}}</td>
-                <td>{{arquetipo.nombrea}}</td>
-                <td>{{arquetipo.tier}}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-</body>
-</html>
+<!-- Load static files -->
+{% load static %}
+
+<!-- Put title -->
+{%block title%}
+Arquetipos
+{% endblock %}
+
+<!-- Put content -->
+{% block content %}
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="d-flex">
+                <div class="w-100 text-center">
+                    <h3 class="mb-4">Arquetipos</h3>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-2">
+                <div class="row mt-1 mb-0 justify-content-center">
+                    <form action="{% url 'arquetipos' %}" method="post">
+                        {% csrf_token %}
+                        {{tierForm.non_field_errors}}
+
+                        <div class="form-group">
+                            <label class="label" for="{{tierForm.tierSelect.id_for_label}}">filtrar por tiers: </label>
+                            <select name="{{tierForm.tierSelect.html_name}}" id="{{tierForm.tierSelect.id_for_label}}" class="rounded-pill form-control select">
+                                {% for value, text in tierForm.tierSelect.field.choices %}
+                                    <option value="{{value}}">{{text}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="rounded-pill form-control btn btn-primary">
+                                Filtrar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-10">
+                
+                <div class="row">
+                    {% for arquetipo in arquetipos %}
+                        {% if select_tier == "Todos" or select_tier == arquetipo.tier %}
+                        <div class="col-lg-3 col-md-4 mb-3 ">
+                            <div class="wrap border p-4 text-center rounded">
+                                <div >
+                                    <div class="d-flex justify-content-center">
+                                        <p>{{arquetipo.ida}}</p>
+                                        <strong class="ml-1"> {{arquetipo.nombrea}}</strong>
+                                    </div>
+                                    <p>Tier {{arquetipo.tier}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-1"></div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -30,3 +30,15 @@ class DeckCreateForm(MultiModelForm):
         'arquetipo_principal':ArquetipoPrincipalForm,
         'arquetipo_adicional':ArquetipoAdicionalForm
     } 
+
+def get_choices():
+    choices = [("Todos", "Todos")]
+    for ch in list(Arquetipo.objects.all().values_list("tier").distinct()):
+        ch = ch[0]
+        choices.append((ch, ch))
+    return choices
+
+class FilterByTierForm(forms.Form):
+    tierSelect = forms.ChoiceField(choices=get_choices())
+
+

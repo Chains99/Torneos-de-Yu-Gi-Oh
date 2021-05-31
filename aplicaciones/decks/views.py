@@ -1,10 +1,13 @@
 from django.views.generic import CreateView,DeleteView,ListView,UpdateView
 from aplicaciones.users.models import AuthUser, Jugador
+from aplicaciones.decks.forms import FilterByTierForm
 from .models import Deck,Arquetipo
 from .forms import DeckCreateForm
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.http import HttpResponseRedirect
+from django.shortcuts import render
+
 
 class DeckList(PermissionRequiredMixin,ListView):
     model=Deck
@@ -129,3 +132,19 @@ class DeckDelete(PermissionRequiredMixin,DeleteView):
 class ArquetipoList(ListView):
     model=Arquetipo
     template_name='arquetipos.html'
+
+    def get_context_data(self, **kwargs):
+        context = {"arquetipos": Arquetipo.objects.all().values("ida", "nombrea", "tier") }
+        tier = set(list(map(lambda x : x[0], Arquetipo.objects.all().values_list("tier"))))
+        tier.add("Todos")
+        context["tiers"] = list(tier)
+        return context
+
+def render_arquetipo(request):
+    context = {"arquetipos": Arquetipo.objects.all().values("ida", "nombrea", "tier") }
+    context["select_tier"] = "Todos"
+    context["tierForm"] = FilterByTierForm
+
+    if request.method == "POST":
+        context["select_tier"] = request.POST["tierSelect"] if request.POST["tierSelect"] != "None" else None
+    return render(request, "arquetipos.html", context)

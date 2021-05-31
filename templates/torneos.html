@@ -44,7 +44,6 @@ Torneos
                                         <a class="btn btn-primary circle-btn" href="{% url 'torneo' torneo.idt %}"><i class="fa fa-eye"></i> </a>
                                         {% if perms.torneos.change_torneo %}
                                             <a class="btn btn-primary circle-btn" href="{% url 'editar_torneo' torneo.idt %}"><i class="fa fa-pencil"></i> </a> 
-                                        {% endif %}
                                             <a  class="btn btn-primary circle-btn " href="{% url 'eliminar_torneo' torneo.idt %}"><i class="fa fa-trash-o"></i></a>
                                         {% endif %}
                                     </td>

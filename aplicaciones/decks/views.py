@@ -126,3 +126,6 @@ class DeckDelete(PermissionRequiredMixin,DeleteView):
     permission_required='decks.delete_deck'
     permission_denied_message='Acceso denegado. Usuario no autorizado'
 
+class ArquetipoList(ListView):
+    model=Arquetipo
+    template_name='arquetipos.html'

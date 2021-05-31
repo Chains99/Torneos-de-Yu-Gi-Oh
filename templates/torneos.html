@@ -40,7 +40,7 @@ Torneos
                                     <td>{{torneo.direcciont}}</td>
                                     <td>{{torneo.fecha_hora_de_iniciot}}</td>
                                     <td>
-                                        <a class="btn btn-primary rounded-pill" href="#">Ver</a>
+                                        <a class="btn btn-primary rounded-pill" href="{% url 'torneo' torneo.idt %}">Ver</a>
                                         {% if perms.torneos.add_admintorneos %}
                                             <a class="btn btn-primary  rounded-pill" href="{% url 'editar_torneo' torneo.idt %}">Editar</a> 
                                             <a class="btn btn-primary  rounded-pill" href="{% url 'eliminar_torneo' torneo.idt %}">Eliminar</a>
@@ -82,10 +82,13 @@ Torneos
                                 <td>{{torneo.direcciont}}</td>
                                 <td>{{torneo.fecha_hora_de_iniciot}}</td>
                                 <td>
-                                    <a class="btn btn-primary rounded-pill" href="#">Ver</a>
+                                    <a class="btn btn-primary rounded-pill" href="{% url 'torneo' torneo.idt %}">Ver</a>
                                     {% if perms.torneos.add_admintorneos %}
                                         <a class="btn btn-primary rounded-pill" href="{% url 'editar_torneo' torneo.idt %}">Editar</a> 
                                         <a  class="btn btn-primary rounded-pill" href="{% url 'eliminar_torneo' torneo.idt %}">Eliminar</a>
+                                    {% endif %}
+                                    {% if perms.users.change_jugador %}
+                                        <a class="btn btn-primary rounded-pill" href="{% url 'inscripcion' torneo.idt %}">Inscribirse o cambiar deck</a>
                                     {% endif %}
                                 </td>
                         </tr>

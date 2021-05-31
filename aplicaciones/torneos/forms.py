@@ -9,3 +9,13 @@ class TorneoForm(forms.ModelForm):
         'nombret':'Nombre (No más de 100 caracteres)',
         'direcciont':'Dirección (No más de 100 caracteres)',
         'fecha_hora_de_iniciot': 'Fecha y hora de inicio (Formato AAAA-MM-DD HH:MM)'}
+
+class EditarTorneoForm(forms.ModelForm):
+    class Meta:
+        model=Torneo
+        fields=['nombret','direcciont','fecha_hora_de_iniciot']
+        labels={
+            'nombret':'Nombre (No más de 100 caracteres)',
+            'direcciont':'Dirección (No más de 100 caracteres)',
+            'fecha_hora_de_iniciot': 'Fecha y hora de inicio (Formato AAAA-MM-DD HH:MM)'
+        }

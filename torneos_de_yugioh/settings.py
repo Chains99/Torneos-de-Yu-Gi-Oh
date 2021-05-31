@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'aplicaciones.torneos',
     'aplicaciones.users',
     'aplicaciones.admins_torneos',
-    'aplicaciones.admins_partida',
+    'aplicaciones.admins_partidas',
     'aplicaciones.decks',
     'aplicaciones.eventos'
 ]

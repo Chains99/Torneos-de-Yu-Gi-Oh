@@ -1,7 +1,7 @@
 from django.views.generic import CreateView,DeleteView,ListView,UpdateView
 from .models import Torneo
 from django.utils import timezone
-from .forms import TorneoForm
+from .forms import TorneoForm,EditarTorneoForm
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import PermissionRequiredMixin
 
@@ -32,7 +32,7 @@ class TorneoCreate(PermissionRequiredMixin,CreateView):
 
 class TorneoUpdate(PermissionRequiredMixin,UpdateView):
     model=Torneo
-    form_class=TorneoForm
+    form_class=EditarTorneoForm
     template_name='crear_torneo.html'
     success_url=reverse_lazy('torneos')
     permission_required='torneos.change_torneo'

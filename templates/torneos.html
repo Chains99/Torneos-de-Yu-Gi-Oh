@@ -42,8 +42,8 @@ Torneos
                                     <td>
                                         <a class="btn btn-primary rounded-pill" href="{% url 'torneo' torneo.idt %}">Ver</a>
                                         {% if perms.torneos.add_admintorneos %}
-                                            <a class="btn btn-primary  rounded-pill" href="{% url 'editar_torneo' torneo.idt %}">Editar</a> 
-                                            <a class="btn btn-primary  rounded-pill" href="{% url 'eliminar_torneo' torneo.idt %}">Eliminar</a>
+                                            <a class="btn btn-primary" href="{% url 'editar_torneo' torneo.idt %}">Editar</a> 
+                                            <a class="btn btn-primary" href="{% url 'eliminar_torneo' torneo.idt %}">Eliminar</a>
                                         {% endif %}
                                     </td>
                             </tr>
@@ -84,8 +84,8 @@ Torneos
                                 <td>
                                     <a class="btn btn-primary rounded-pill" href="{% url 'torneo' torneo.idt %}">Ver</a>
                                     {% if perms.torneos.add_admintorneos %}
-                                        <a class="btn btn-primary rounded-pill" href="{% url 'editar_torneo' torneo.idt %}">Editar</a> 
-                                        <a  class="btn btn-primary rounded-pill" href="{% url 'eliminar_torneo' torneo.idt %}">Eliminar</a>
+                                        <a class="btn btn-primary" href="{% url 'editar_torneo' torneo.idt %}">Editar</a> 
+                                        <a  class="btn btn-primary" href="{% url 'eliminar_torneo' torneo.idt %}">Eliminar</a>
                                     {% endif %}
                                     {% if perms.users.change_jugador %}
                                         <a class="btn btn-primary rounded-pill" href="{% url 'inscripcion' torneo.idt %}">Inscribirse o cambiar deck</a>

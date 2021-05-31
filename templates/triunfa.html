@@ -1,16 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar lugar alcanzado</title>
-</head>
-<body>
-    <h1> Asigne lugar alcanzado al participante {{participacion.participante.idj.idj}} en la ronda {{participacion.idr}} del torneo {{participacion.participante.idt.nombret}}({{participacion.participante.idt.idt}})</h1>
-    <form method="post">  {% csrf_token %}
-        {{form.as_p}}
-        <button type="submit">Asignar</button>
-    </form>
-</body>
-</html>
+
+{% extends "_main_template.html" %}
+
+{% block title %}
+Asignar supera ronda
+{% endblock %}
+
+{% block content %}
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center mt-3 mb-3">
+            <div class="col-lg-3 col-md-2"></div>
+            <div class="col-lg-5 col-md-8">
+                <div class="wrap d-md-flex p-4 p-md-5">
+                    <div class="login-wrap">
+                        <div>
+                            <div class="w-100 text-center">
+                                <h3 class="mb-4">El jugador {{participacion.participante.idj.idj}} supera la Ronda {{participacion.idr}} del Torneo {{participacion.participante.idt.nombret}}({{participacion.participante.idt.idt}})</h3>
+                            </div>
+
+                            <form class="align-items-center text-center" method="post"> 
+                                {% csrf_token %}
+                                {{ form.non_field_errors }}
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group mb-3">
+                                            {{ form.triunfa.errors }}
+                                            <label class="label" for="{{ form.triunfa.id_for_label }}">Triuna</label> 
+                                            <input type="text" class="form-control rounded-pill" name="{{ form.triunfa.html_name }}" placeholder="(S o N)" {% if not form.triunfa.value is None %} value="{{form.triunfa.value}}" {% endif %} max-length="1">
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="form-control btn btn-primary rounded-pill submit px-3" type="submit">Asignar</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-2"></div>
+        </div>
+    </div>
+</section>
+{% endblock %}

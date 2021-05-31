@@ -41,10 +41,11 @@ Torneos
                                     <td>{{torneo.direcciont}}</td>
                                     <td>{{torneo.fecha_hora_de_iniciot}}</td>
                                     <td>
-                                        <a class="btn btn-primary " href="{% url 'torneo' torneo.idt %}"><i class="fa fa-eye"></i> </a>
-                                        {% if perms.torneos.add_admintorneos %}
-                                            <a class="btn btn-primary" href="{% url 'editar_torneo' torneo.idt %}"><i class="fa fa-pencil"></i> </a> 
-                                            <a  class="btn btn-primary " href="{% url 'eliminar_torneo' torneo.idt %}"><i class="fa fa-trash-o"></i></a>
+                                        <a class="btn btn-primary circle-btn" href="{% url 'torneo' torneo.idt %}"><i class="fa fa-eye"></i> </a>
+                                        {% if perms.torneos.change_torneo %}
+                                            <a class="btn btn-primary circle-btn" href="{% url 'editar_torneo' torneo.idt %}"><i class="fa fa-pencil"></i> </a> 
+                                        {% endif %}
+                                            <a  class="btn btn-primary circle-btn " href="{% url 'eliminar_torneo' torneo.idt %}"><i class="fa fa-trash-o"></i></a>
                                         {% endif %}
                                     </td>
                             </tr>
@@ -85,13 +86,15 @@ Torneos
                                 <td>{{torneo.direcciont}}</td>
                                 <td>{{torneo.fecha_hora_de_iniciot}}</td>
                                 <td>
-                                    <a class="btn btn-primary " href="{% url 'torneo' torneo.idt %}"><i class="fa fa-eye"></i> </a>
-                                    {% if perms.torneos.add_admintorneos %}
-                                        <a class="btn btn-primary" href="{% url 'editar_torneo' torneo.idt %}"><i class="fa fa-pencil"></i> </a> 
-                                        <a  class="btn btn-primary " href="{% url 'eliminar_torneo' torneo.idt %}"><i class="fa fa-trash-o"></i></a>
+                                    <a class="btn btn-primary circle-btn" href="{% url 'torneo' torneo.idt %}"><i class="fa fa-eye"></i> </a>
+                                    {% if perms.torneos.change_torneo %}
+                                        <a class="btn btn-primary circle-btn" href="{% url 'editar_torneo' torneo.idt %}"><i class="fa fa-pencil"></i> </a> 
+                                    {% endif %}
+                                    {% if perms.torneos.delete_torneo %}
+                                        <a  class="btn btn-primary circle-btn" href="{% url 'eliminar_torneo' torneo.idt %}"><i class="fa fa-trash-o"></i></a>
                                     {% endif %}
                                     {% if perms.users.change_jugador %}
-                                        <a class="btn btn-primary" href="{% url 'inscripcion' torneo.idt %}">Inscribirse o cambiar deck</a>
+                                        <a class="btn btn-primary circle-btn" href="{% url 'inscripcion' torneo.idt %}">Inscribirse o cambiar deck</a>
                                     {% endif %}
                                 </td>
                         </tr>

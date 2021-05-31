@@ -87,10 +87,10 @@ Mi Perfil
                             <td>{{deck.ida_adicional.nombrea}}</td>
                             <td class="d-flex justify-content-between">
                                 {% if perms.decks.change_deck %}
-                                    <a class="btn btn-primary" href="{% url 'editar_deck' deck.idd %}"><i class="fa fa-pencil"></i></a>
+                                    <a class="btn btn-primary circle-btn" href="{% url 'editar_deck' deck.idd %}"><i class="fa fa-pencil"></i></a>
                                 {% endif %}
                                 {% if perms.decks.delete_deck %}
-                                    <a class="btn btn-primary" href="{% url 'eliminar_deck' deck.idd %}"><i class="fa fa-trash"></i></a>
+                                    <a class="btn btn-primary circle-btn" href="{% url 'eliminar_deck' deck.idd %}"><i class="fa fa-trash"></i></a>
                                 {% endif %}
                             </td>
                         </tr>

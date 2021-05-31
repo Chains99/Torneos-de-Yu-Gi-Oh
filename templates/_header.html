@@ -22,17 +22,28 @@
                                 <li class="nav-item" id="consultas" >
                                     <a class="nav-link" href="{% url 'consultas' %}">Consultas</a>
                                 </li>
-
-                                {% if perms.torneos.add_admintorneos %}
-                                    <li class="nav-item" id="admint" >
-                                        <a class="nav-link" href="{% url 'registrar_admin_torneos' %}">+ Admin de Torneos</a>
-                                    </li>
+                                {% if perms.admins_torneos.add_admintorneos or perms.admins_partidas.add_adminpartidas %}
+                                <li class="btn-group nav-item" id="designar">
+                                    <button type="button" class="btn btn-link nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Designar
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        {% if perms.admins_torneos.add_admintorneos %}
+                                                <a class="nav-link dropdown-item" href="{% url 'registrar_admin_torneos' %}">Nuevo administrador de Torneos</a>
+                                        {% endif %}
+                                        {% if perms.admins_partidas.add_adminpartidas %}
+                                                <a class="nav-link dropdown-item" href="{% url 'registrar_admin_partidas' %}">Nuevo administrador de partidas</a>
+                                        {% endif %}
+                                    </div>
+                                </li>
                                 {% endif %}
-
-                                {% if user.is_authenticated %}
+                                
+                                {% if perms.users.change_jugador %}
                                     <li class="nav-item">
                                         <a class="nav-link" href="{% url 'decks' %}">Mi perfil</a>
                                     </li>
+                                {% endif %}
+                                {% if user.is_authenticated %}
                                     <li class="nav-item">
                                         <a class="nav-link" href="{% url 'logout' %}">Cerrar sesión</a>               
                                     </li>

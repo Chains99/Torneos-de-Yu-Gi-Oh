@@ -45,11 +45,5 @@ class AdminTorneosCreate(PermissionRequiredMixin,FormView):
         )
         user.user_permissions.add(permission)
 
-        content_type=ContentType.objects.get_for_model(Query)
-        permission=Permission.objects.get(
-            codename='view_query',
-            content_type=content_type
-        )
-        user.user_permissions.add(permission)
         
         return super(AdminTorneosCreate, self).form_valid(form)

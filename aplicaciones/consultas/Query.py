@@ -10,7 +10,7 @@ class Query(metaclass=ABCMeta):
     @abstractmethod
     def execute(self,context):
         pass
-
+    
 class MoreDeck(Query):
     def __init__(self, n):
         self.n = n  

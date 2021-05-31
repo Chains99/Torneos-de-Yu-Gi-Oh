@@ -43,7 +43,7 @@ Torneos {{torneo.nombret}}
                                 <td>{{participante.lugar_alcanzado}}</td>
                                 {% if perms.eventos.change_participante %}          
                                     <td>
-                                        <a class="btn btn-primary" href="{% url 'editar_posicion' clave %}">Editar <i class="fa fa-pencil"></i></a>
+                                        <a class="btn btn-primary circle-btn" href="{% url 'editar_posicion' clave %}"><i class="fa fa-pencil"></i></a>
                                     </td>
                                 {% endif %}
                             </tr>

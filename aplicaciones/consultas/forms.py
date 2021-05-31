@@ -31,3 +31,15 @@ class VictoryPlayerTimeForm(Form):
     n_players = forms.IntegerField(min_value=1, required=True, initial=10)
     initial_date = forms.DateTimeField(required=True)
     final_date = forms.DateTimeField(required=True)
+
+class ProvinceMoreChForm(Form):
+    initial_date = forms.DateTimeField(required=True)
+    final_date = forms.DateTimeField(required=True)
+
+class MunicipalityMoreChForm(Form):
+    initial_date = forms.DateTimeField(required=True)
+    final_date = forms.DateTimeField(required=True)
+
+class ACTForm(Form):
+    initial_date = forms.DateTimeField(required=True)
+    final_date = forms.DateTimeField(required=True)

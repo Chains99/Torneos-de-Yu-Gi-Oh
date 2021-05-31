@@ -340,7 +340,7 @@ Consultas
 
                         <div id="collapse-5" class="collapse {% if not victoryP is None %} show {% endif %}" aria-labelledby="heading-5" data-parent="#accordion-Queries">
                             <div class="card-body text-center">
-                                 <div class="row">
+                                <div class="row">
                                     <div class="col-lg-3 col-md-2"></div>
                                     <div class="col-lg-6 col-md-8"> 
                                         <form action="{% url 'consultas' %}" method="post"> 
@@ -353,12 +353,12 @@ Consultas
                                             <div class="form-group mb-3">
                                                 {{vpt.initial_date.errors}}
                                                 <label class="label" for="{{vpt.initial_date.id_for_label}}">fecha inicial</label>
-                                                <input type="datetime" class="form-control rounded-pill" placeholder="yyyy-mm-dd hh:mm:ss" name="{{vpt.initial_date.html_name}}" id="{{vpt.initial_date.id_for_label}}" required min="{{vpt.initial_date.field.min_value}}" {% if not vpt.initial_date.field.initial is None %} value="{{vpt.initial_date.field.initial}}" {% endif %}/>
+                                                <input type="datetime" class="form-control rounded-pill" placeholder="yyyy-mm-dd hh:mm" name="{{vpt.initial_date.html_name}}" id="{{vpt.initial_date.id_for_label}}" required min="{{vpt.initial_date.field.min_value}}" {% if not vpt.initial_date.field.initial is None %} value="{{vpt.initial_date.field.initial}}" {% endif %}/>
                                             </div>
                                             <div class="form-group mb-3">
                                                 {{vpt.final_date.errors}}
                                                 <label class="label" for="{{vpt.final_date.id_for_label}}">fecha final</label>
-                                                <input type="datetime" class="form-control rounded-pill" placeholder="yyyy-mm-dd hh:mm:ss" name="{{vpt.final_date.html_name}}" id="{{vpt.final_date.id_for_label}}" required min="{{vpt.final_date.field.min_value}}"  {% if not vpt.final_date.field.initial is None %} value="{{vpt.final_date.field.initial}}" {% endif %}/>
+                                                <input type="datetime" class="form-control rounded-pill" placeholder="yyyy-mm-dd hh:mm" name="{{vpt.final_date.html_name}}" id="{{vpt.final_date.id_for_label}}" required min="{{vpt.final_date.field.min_value}}"  {% if not vpt.final_date.field.initial is None %} value="{{vpt.final_date.field.initial}}" {% endif %}/>
                                             </div>
                                             <input type="hidden" name="form-type" value="vpt"/>
                                             <button class="btn btn-primary rounded-pill" type="submit">Consultar</button>
@@ -466,36 +466,198 @@ Consultas
                         <div class="card-header" id="heading-7">
                             <h2 class="mb-0">
                                 <button class="btn btn-acc btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapse-7" aria-expanded="true" aria-controls="collapse-7">  
-                                    La cantidad de veces que los arquetipos que han sido el arquetipo del campeón en un grupo de torneos (en un intervalo de tiempo). 
+                                    La cantidad de veces que los arquetipos han sido el arquetipo del campeón en un grupo de torneos (en un intervalo de tiempo). 
                                 </button>
                             </h2>
                         </div>
 
-                        <div id="collapse-7" class="collapse" aria-labelledby="heading-7" data-parent="#accordion-Queries">
-                            <div class="card-body">
-                                hola
+                        <div id="collapse-7" class="collapse {% if not act is None %} show {% endif %}" aria-labelledby="heading-7" data-parent="#accordion-Queries">
+                            <div class="card-body text-center">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-2"></div>
+                                    <div class="col-lg-6 col-md-8"> 
+                                        <form action="{% url 'consultas' %}" method="post"> 
+                                            {% csrf_token %}
+                                            {{ACT.non_field_errors}}
+                                            <div class="form-group mb-3">
+                                                {{ACT.initial_date.errors}}
+                                                <label class="label" for="{{ACT.initial_date.id_for_label}}">fecha inicial</label>
+                                                <input type="datetime" class="form-control rounded-pill" placeholder="yyyy-mm-dd hh:mm" name="{{ACT.initial_date.html_name}}" id="{{ACT.initial_date.id_for_label}}" required min="{{ACT.initial_date.field.min_value}}" {% if not ACT.initial_date.field.initial is None %} value="{{ACT.initial_date.field.initial}}" {% endif %}/>
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                {{ACT.final_date.errors}}
+                                                <label class="label" for="{{ACT.final_date.id_for_label}}">fecha final</label>
+                                                <input type="datetime" class="form-control rounded-pill" placeholder="yyyy-mm-dd hh:mm" name="{{ACT.final_date.html_name}}" id="{{ACT.final_date.id_for_label}}" required min="{{ACT.final_date.field.min_value}}"  {% if not ACT.final_date.field.initial is None %} value="{{ACT.final_date.field.initial}}" {% endif %}/>
+                                            </div>
+                                            <input type="hidden" name="form-type" value="ACT"/>
+                                            <button class="btn btn-primary rounded-pill" type="submit">Consultar</button>
+                                        </form>
+                                    </div>
+                                    <div class="col-lg-3 col-md-2"></div>
+                                </div>
                             </div>
+                            {% if not act is None %}
                             <div class="card-footer">
-                                <p class="text-bold">Salida</p>
+                                <div class="row">
+                                    <div class="col-lg-2 col-md-1"></div>
+                                    <div class="col-lg-8 col-md-10">
+                                        <h5 class="text-bold">Salida</h5>
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Nombre del Arquetipo</th>
+                                                    <th>Tier</th>
+                                                    <th>Cantidad de Campeones</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for arq in act %}
+                                                    <tr>
+                                                        <td>{{arq.0.nombrea}}</td>
+                                                        <td>
+                                                            {% if arq.0.tier is None %} - {% endif %}
+                                                            {% if not arq.0.tier is None %} {{arq.0.tier}} {% endif %}
+                                                        </td>
+                                                        <td>{{arq.1}}</td>
+                                                    </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="col-lg-2 col-md-1"></div>
+                                </div>
                             </div>
+                            {% endif %}
                         </div>
                     </div>
                     <div class="card acc-item">
                         <div class="card-header" id="heading-8">
                             <h2 class="mb-0">
                                 <button class="btn btn-acc btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapse-8" aria-expanded="true" aria-controls="collapse-8">  
-                                    La Provincia/Municipio con más campeones (en un intervalo de tiempo).
+                                    La Provincia con más campeones (en un intervalo de tiempo).
                                 </button>
                             </h2>
                         </div>
 
-                        <div id="collapse-8" class="collapse" aria-labelledby="heading-8" data-parent="#accordion-Queries">
-                            <div class="card-body">
-                                hola
+                        <div id="collapse-8" class="collapse {% if not pmc is None %} show {% endif %}" aria-labelledby="heading-8" data-parent="#accordion-Queries">
+                            <div class="card-body text-center">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-2"></div>
+                                    <div class="col-lg-6 col-md-8"> 
+                                        <form action="{% url 'consultas' %}" method="post"> 
+                                            {% csrf_token %}
+                                            {{pmCh.non_field_errors}}
+                                            <div class="form-group mb-3">
+                                                {{pmCh.initial_date.errors}}
+                                                <label class="label" for="{{pmCh.initial_date.id_for_label}}">fecha inicial</label>
+                                                <input type="datetime" class="form-control rounded-pill" placeholder="yyyy-mm-dd hh:mm" name="{{pmCh.initial_date.html_name}}" id="{{pmCh.initial_date.id_for_label}}" required min="{{pmCh.initial_date.field.min_value}}" {% if not pmCh.initial_date.field.initial is None %} value="{{pmCh.initial_date.field.initial}}" {% endif %}/>
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                {{pmCh.final_date.errors}}
+                                                <label class="label" for="{{pmCh.final_date.id_for_label}}">fecha final</label>
+                                                <input type="datetime" class="form-control rounded-pill" placeholder="yyyy-mm-dd hh:mm" name="{{pmCh.final_date.html_name}}" id="{{pmCh.final_date.id_for_label}}" required min="{{pmCh.final_date.field.min_value}}"  {% if not pmCh.final_date.field.initial is None %} value="{{pmCh.final_date.field.initial}}" {% endif %}/>
+                                            </div>
+                                            <input type="hidden" name="form-type" value="pmCh"/>
+                                            <button class="btn btn-primary rounded-pill" type="submit">Consultar</button>
+                                        </form>
+                                    </div>
+                                    <div class="col-lg-3 col-md-2"></div>
+                                </div>
                             </div>
+                            {% if not pmc is None %}
                             <div class="card-footer">
-                                <p class="text-bold">Salida</p>
+                                <div class="row">
+                                    <div class="col-lg-2 col-md-1"></div>
+                                    <div class="col-lg-8 col-md-10">
+                                        <h5 class="text-bold">Salida</h5>
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Provincia</th>
+                                                    <th>Cantidad de Campeones</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for province in pmc %}
+                                                    <tr>
+                                                        <td>{{province.0.idp}}</td>
+                                                        <td>{{province.0.nombrep}}</td>
+                                                        <td>{{province.1}}</td>
+                                                    </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="col-lg-2 col-md-1"></div>
+                                </div>
                             </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="card acc-item">
+                        <div class="card-header" id="heading-11">
+                            <h2 class="mb-0">
+                                <button class="btn btn-acc btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapse-11" aria-expanded="true" aria-controls="collapse-11">  
+                                    El Municipio con más campeones (en un intervalo de tiempo).
+                                </button>
+                            </h2>
+                        </div>
+
+                        <div id="collapse-11" class="collapse {% if not mmc is None %} show {% endif %}" aria-labelledby="heading-11" data-parent="#accordion-Queries">
+                            <div class="card-body text-center">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-2"></div>
+                                    <div class="col-lg-6 col-md-8"> 
+                                        <form action="{% url 'consultas' %}" method="post"> 
+                                            {% csrf_token %}
+                                            {{mmCh.non_field_errors}}
+                                            <div class="form-group mb-3">
+                                                {{mmCh.initial_date.errors}}
+                                                <label class="label" for="{{mmCh.initial_date.id_for_label}}">fecha inicial</label>
+                                                <input type="datetime" class="form-control rounded-pill" placeholder="yyyy-mm-dd hh:mm" name="{{mmCh.initial_date.html_name}}" id="{{mmCh.initial_date.id_for_label}}" required min="{{mmCh.initial_date.field.min_value}}" {% if not mmCh.initial_date.field.initial is None %} value="{{mmCh.initial_date.field.initial}}" {% endif %}/>
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                {{mmCh.final_date.errors}}
+                                                <label class="label" for="{{mmCh.final_date.id_for_label}}">fecha final</label>
+                                                <input type="datetime" class="form-control rounded-pill" placeholder="yyyy-mm-dd hh:mm" name="{{mmCh.final_date.html_name}}" id="{{mmCh.final_date.id_for_label}}" required min="{{mmCh.final_date.field.min_value}}"  {% if not mmCh.final_date.field.initial is None %} value="{{mmCh.final_date.field.initial}}" {% endif %}/>
+                                            </div>
+                                            <input type="hidden" name="form-type" value="mmCh"/>
+                                            <button class="btn btn-primary rounded-pill" type="submit">Consultar</button>
+                                        </form>
+                                    </div>
+                                    <div class="col-lg-3 col-md-2"></div>
+                                </div>
+                            </div>
+                            {% if not mmc is None %}
+                            <div class="card-footer">
+                                <div class="row">
+                                    <div class="col-lg-2 col-md-1"></div>
+                                    <div class="col-lg-8 col-md-10">
+                                        <h5 class="text-bold">Salida</h5>
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Municipio</th>
+                                                    <th>Cantidad de Campeones</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for municipality in mmc %}
+                                                    <tr>
+                                                        <td>{{municipality.0.idm}}</td>
+                                                        <td>{{municipality.0.nombrem}}</td>
+                                                        <td>{{municipality.1}}</td>
+                                                    </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="col-lg-2 col-md-1"></div>
+                                </div>
+                            </div>
+                            {% endif %}
                         </div>
                     </div>
                     <div class="card acc-item">

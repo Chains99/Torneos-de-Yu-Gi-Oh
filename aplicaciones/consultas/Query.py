@@ -4,6 +4,7 @@ from aplicaciones.decks.models import Deck, Arquetipo
 from django.db.models import Count
 from collections import Counter
 from abc import ABCMeta, abstractmethod
+from datetime import *
 
 class Query(metaclass=ABCMeta):
     @abstractmethod
@@ -138,7 +139,6 @@ class ArchTR(Query):
         decks = [Participante.objects.filter(idt=self.idt, idj=_idj).values_list("idd")[0][0] for _idj in participantes]
         arq = Counter([Arquetipo.objects.filter(ida=Deck.objects.filter(idd=deck).values_list("ida_principal")[0][0])[0] for deck in decks])
         count_arq = sorted(arq.items(), key=lambda x: x[1], reverse=True)
-        print(count_arq)
         result = []
         if len(count_arq):
             _max = max(map(lambda x: x[1], count_arq))
@@ -181,3 +181,98 @@ class VPT(Query):
     def get_winner(self, play):
         r1, r2 = map(lambda x: int(x), play.resultado.split("-"))
         return play.idj1 if r1 == 2 else play.idj2
+
+class ProvinceMoreChampions(Query):
+    def __init__(self, initial_date, final_date):
+        self.initial = initial_date
+        self.final = final_date
+        self.dt = lambda x : datetime.strptime(x, "%Y-%m-%d %H:%M")
+        self.name = "pmc"
+
+    def execute(self, context):
+        campeon_torneo = list(Participante.objects.filter(lugar_alcanzado="Campeon").values_list("idj", "idt"))
+        campeon_torneo_province = [[ct[0], ct[1], Jugador.objects.filter(idj=ct[0])[0].idp] for ct in campeon_torneo]
+        
+        campeon_in = []
+        for ctp in campeon_torneo_province:
+            time_last_play = max(list(Partida.objects.filter(idt=ctp[1]).values_list("fecha_hora_de_finalizacionp")))[0].replace(tzinfo=None)
+            if time_last_play <= self.dt(self.final) and time_last_play >= self.dt(self.initial):
+                campeon_in.append(ctp)
+        cprovinces = Counter(map(lambda x: Provincia.objects.filter(idp=x[2])[0], campeon_in))
+        count_p = sorted(cprovinces.items(), key=lambda x: x[1], reverse=True)
+        result = []
+        if len(count_p):
+            _max = max(map(lambda x: x[1], count_p))
+            for c in count_p:
+                if c[1] == _max:
+                    result.append(c)
+                else: 
+                    break
+        context[self.name] = result
+        context["pmCh"] = context["pmCh"]()
+        context["pmCh"].fields["initial_date"].initial = self.initial
+        context["pmCh"].fields["final_date"].initial = self.final
+        return context
+
+class MunicipalityMoreChampions(Query):
+    def __init__(self, initial_date, final_date):
+        self.initial = initial_date
+        self.final = final_date
+        self.dt = lambda x : datetime.strptime(x, "%Y-%m-%d %H:%M")
+        self.name = "mmc"
+
+    def execute(self, context):
+        campeon_torneo = list(Participante.objects.filter(lugar_alcanzado="Campeon").values_list("idj", "idt"))
+        campeon_torneo_municipality = [[ct[0], ct[1], Jugador.objects.filter(idj=ct[0])[0].idm] for ct in campeon_torneo]
+        
+        campeon_in = []
+        for ctp in campeon_torneo_municipality:
+            time_last_play = max(list(Partida.objects.filter(idt=ctp[1]).values_list("fecha_hora_de_finalizacionp")))[0].replace(tzinfo=None)
+            
+            if time_last_play <= self.dt(self.final) and time_last_play >= self.dt(self.initial):
+                campeon_in.append(ctp)
+        cmun = Counter(map(lambda x: Municipio.objects.filter(idm=x[2])[0], campeon_in))
+        count_m = sorted(cmun.items(), key=lambda x: x[1], reverse=True)
+
+        result = []
+        if len(count_m):
+            _max = max(map(lambda x: x[1], count_m))
+            for c in count_m:
+                if c[1] == _max:
+                    result.append(c)
+                else: 
+                    break
+        context[self.name] = result
+        context["mmCh"] = context["mmCh"]()
+        context["mmCh"].fields["initial_date"].initial = self.initial
+        context["mmCh"].fields["final_date"].initial = self.final
+        return context
+
+class ACT(Query):
+    def __init__(self, initial_date, final_date):
+        self.initial = initial_date
+        self.final = final_date
+        self.dt = lambda x : datetime.strptime(x, "%Y-%m-%d %H:%M")
+        self.name = "act"
+
+    def execute(self, context):
+        campeon_deck = list(Participante.objects.filter(lugar_alcanzado="Campeon").values_list("idj", "idt", "idd"))
+        campeon_deck_arq = [[ct[0], ct[1], ct[2], Deck.objects.filter(idd=ct[2])[0].ida_principal] for ct in campeon_deck]
+
+        campeon_in = []
+        for cda in campeon_deck_arq:
+            time_last_play = max(list(Partida.objects.filter(idt=cda[1]).values_list("fecha_hora_de_finalizacionp")))[0].replace(tzinfo=None)
+            
+            if time_last_play <= self.dt(self.final) and time_last_play >= self.dt(self.initial):
+                campeon_in.append(cda)
+        
+        print(campeon_in)
+        carq = Counter(map(lambda x: x[3], campeon_in))
+        count_a = sorted(carq.items(), key=lambda x: x[1], reverse=True)
+        result_no_cero = list(filter(lambda x: False if x[1] == 0  else True, count_a))
+        print(result_no_cero)
+        context[self.name] = result_no_cero
+        context["ACT"] = context["ACT"]()
+        context["ACT"].fields["initial_date"].initial = self.initial
+        context["ACT"].fields["final_date"].initial = self.final
+        return context

@@ -79,3 +79,24 @@ class VictoryPTFactory(QueryFactory):
 
     def get_instance(self, data):
         return VPT(int(data["n_players"]), data["initial_date"], data["final_date"])
+
+class ProvinceMoreChFactory(QueryFactory):
+    def __init__(self):
+        self.name = "pmCh"
+
+    def get_instance(self, data):
+        return ProvinceMoreChampions(data["initial_date"], data["final_date"])
+    
+class MunicipalityMoreChFactory(QueryFactory):
+    def __init__(self):
+        self.name = "mmCh"
+
+    def get_instance(self, data):
+        return MunicipalityMoreChampions(data["initial_date"], data["final_date"])
+    
+class ACTFactory(QueryFactory):
+    def __init__(self):
+        self.name = "ACT"
+    
+    def get_instance(self, data):
+        return ACT(data["initial_date"], data["final_date"])

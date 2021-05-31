@@ -14,7 +14,10 @@ def consultas_render(request):
         "atrMostCommon": ArchTRForm,
         "ampTournment": ArchMorePresentForm,
         'moreDeck': MoreDeckForm, 
-        "vpt": VictoryPlayerTimeForm
+        "vpt": VictoryPlayerTimeForm,
+        "pmCh": ProvinceMoreChForm,
+        "mmCh": MunicipalityMoreChForm,
+        "ACT": ACTForm
         }
 
     if request.method == 'POST':

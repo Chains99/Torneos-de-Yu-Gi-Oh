@@ -68,3 +68,12 @@ Arquetipos
     </div>
 </section>
 {% endblock %}
+
+{% block finalJS %}
+    <script>
+        $(document).ready(function (){
+            $(".nav-item").removeClass("active");
+            $("#arquetipos").addClass("active");
+        });
+    </script>
+{% endblock %}

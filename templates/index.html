@@ -52,3 +52,12 @@ Inicio
     </section>
 
 {% endblock %}
+
+{% block finalJS %}
+    <script>
+        $(document).ready(function (){
+            $(".nav-item").removeClass("active");
+            $("#index").addClass("active");
+        });
+    </script>
+{% endblock %}

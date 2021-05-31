@@ -10,7 +10,7 @@ body {
 
 p {
     font-family: 'Poppins', sans-serif;
-    font-size: 1.1em;
+    font-size: 1em;
     font-weight: 300;
     line-height: 1.7em;
     color: #999;
@@ -32,7 +32,12 @@ a:focus {
     margin-bottom: 40px;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
-
+.navbar > .container-fluid > h3 > a {
+    font-size: 27px;
+}
+.nav-link {
+    font-size: 15px;
+}
 .navbar-btn {
     box-shadow: none;
     outline: none !important;

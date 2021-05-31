@@ -86,7 +86,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'yugioh_database',
         'USER': 'root',
-        'PASSWORD':'Salario123-',
+        'PASSWORD':'Chains&1999',
         'HOST': 'localhost',
         'PORT':3306,
     }

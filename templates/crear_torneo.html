@@ -31,14 +31,14 @@ Crear o Editar Torneo
                                     <div class="form-group mb-3">
                                         {{form.idt.errors}}
                                         <label class="label" for="{{form.idt.id_for_label}}">ID</label>
-                                        <input class="form-control rounded-pill" type="text" id='{{ form.idt.id_for_label }}"' name="{{ form.idt.html_name }}" value="{{form.idt.value}}" max-length="10">
+                                        <input class="form-control rounded-pill" type="text" id='{{ form.idt.id_for_label }}"' name="{{ form.idt.html_name }}" placeholder="Escribe el ID del torneo" {% if not form.idt.value is None %} value="{{form.idt.value}}" {% endif %} max-length="10">
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="form-group mb-3">
                                         {{form.nombret.errors}}
                                         <label class="label" for="{{form.nombret.id_for_label}}">Nombre</label>
-                                        <input class="form-control rounded-pill" type="text" id="{{ form.nombret.id_for_label }}" name="{{ form.nombret.html_name }}" value="{{form.nombret.value}}" max-length="100">
+                                        <input class="form-control rounded-pill" type="text" id="{{ form.nombret.id_for_label }}" name="{{ form.nombret.html_name }}" placeholder="Escribe el nombre" {% if not form.nombret.value is None %} value="{{form.nombret.value}}" {% endif %} max-length="100">
                                     </div>
                                 </div>
                             </div>
@@ -47,14 +47,14 @@ Crear o Editar Torneo
                                     <div class="form-group mb-3">
                                         {{form.direcciont.errors}}
                                         <label class="label" for="{{form.direcciont.id_for_label}}">Dirección</label>
-                                        <input class="form-control rounded-pill" type="text" id='{{ form.direcciont.id_for_label }}"' name="{{ form.direcciont.html_name }}" value="{{form.direcciont.value}}" max-length="100">
+                                        <input class="form-control rounded-pill" type="text" id='{{ form.direcciont.id_for_label }}"' name="{{ form.direcciont.html_name }}" placeholder="Escribe la dirección" {% if not form.direcciont.value is None %} value="{{form.direcciont.value}}" {% endif %} max-length="100">
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="form-group mb-3">
                                         {{form.fecha_hora_de_iniciot.errors}}
                                         <label class="label" for="{{form.fecha_hora_de_iniciot.id_for_label}}">Fecha y Hora de inicio</label>
-                                        <input class="form-control rounded-pill" type="datatime" id='{{ form.fecha_hora_de_iniciot.id_for_label }}"' name="{{ form.fecha_hora_de_iniciot.html_name }}" value="{{ form.fecha_hora_de_iniciot.value }}" max-length="100">
+                                        <input class="form-control rounded-pill" type="datatime" id='{{ form.fecha_hora_de_iniciot.id_for_label }}"' name="{{ form.fecha_hora_de_iniciot.html_name }}" placeholder="Escribe la fecha" {% if not form.fecha_hora_de_iniciot.value is None %} value="{{ form.fecha_hora_de_iniciot.value }}" {% endif %} max-length="100">
                                     </div>
                                 </div>
                             </div>

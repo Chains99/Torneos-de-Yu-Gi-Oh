@@ -21,6 +21,7 @@ from django.contrib.auth.views import LoginView,LogoutView
 from aplicaciones.users.views import UserCreate,UserUpdate,TorneoUserList
 from aplicaciones.admins_torneos.views import AdminTorneosCreate
 from aplicaciones.decks.views import DeckList,DeckCreate,DeckUpdate,DeckDelete
+from aplicaciones.consultas.views import consultas_render
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -39,5 +40,6 @@ urlpatterns = [
     path('editar_deck/<int:pk>',DeckUpdate.as_view(),name='editar_deck'),
     path('eliminar_deck/<int:pk>',DeckDelete.as_view(),name='eliminar_deck'),
     path('torneos_inscrito/',TorneoUserList.as_view(),name='torneos_inscrito'),
-    path('desarrolladores/',creditos,name='creditos')
+    path('desarrolladores/',creditos,name='creditos'),
+    path('consultas/',consultas_render,name="consultas")
 ]

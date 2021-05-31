@@ -805,3 +805,11 @@ Consultas
 
 {% endblock %}
 
+{% block finalJS %}
+    <script>
+        $(document).ready(function (){
+            $(".nav-item").removeClass("active");
+            $("#consultas").addClass("active");
+        });
+    </script>
+{% endblock %}

@@ -1,15 +1,106 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear deck</title>
-</head>
-<body>
-    <form method="post">  {% csrf_token %}
-        {{form.as_p}}
-        <button type="submit">Crear o Editar</button>
-    </form>
-</body>
+{% load static %}
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Title of the page -->
+        <title> {% block title%} {%endblock%} - Torneos de Yu-Gi-Oh!</title>
+        <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">  
+
+        <link rel="stylesheet" href="{% static 'css/style-page.css' %}">
+
+        <!-- Block to put other CSS files on child template-->
+        {% block css %}
+        {% endblock %}
+
+        <!-- Block to put other JS files on child template-->
+        {% block js %}
+        {% endblock %}
+    </head>
+    <body>
+<section class='ftco-section'>
+    <div class="container">
+        <div class="row justify-content-center mt-3 mb-3">
+            <div class="col-2"></div>
+            <div class="col-8">
+                <div class="wrap d-flex align-items-center">
+					<div class="signup-wrap p-4 p-md-5">
+                        <div class="d-flex">
+			      		    <div class="w-100 text-center">
+			      			    <h3 class="mb-4">Crear o editar Decks</h3>
+			      		    </div>
+			        	</div>
+                        <form method="POST">
+
+                            {% csrf_token %}
+                            {{ form.non_field_errors }}
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group mb-3">
+                                        {{form.deck.nombred.errors}}
+                                        <label class="label" for="{{form.deck.nombred.id_for_label}}">Nombre</label>
+                                        <input class="form-control rounded-pill" type="text" id='{{ form.deck.nombred.id_for_label }}' name="{{ form.deck.nombred.html_name }}" placeholder="Escribe el nombre del Deck" {% if not form.deck.nombred.value is None %} value="{{form.deck.nombred.value}}" {% endif %} max-length="10">
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group mb-3">
+                                        {{form.deck.cantidad_cartas_mazo.errors}}
+                                        <label class="label" for="{{form.deck.cantidad_cartas_mazo.id_for_label}}">Cantidad de cartas mazo</label>
+                                        <input class="form-control rounded-pill" type="number" min="40" max="60" id="{{ form.deck.cantidad_cartas_mazo.id_for_label }}" name="{{ form.deck.cantidad_cartas_mazo.html_name }}" placeholder="(40-60)" {% if not form.deck.cantidad_cartas_mazo.value is None %} value="{{form.deck.cantidad_cartas_mazo.value}}" {% endif %} max-length="2">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group mb-3">
+                                        {{form.deck.cantidad_cartas_mazo_alternativo.errors}}
+                                        <label class="label" for="{{form.deck.cantidad_cartas_mazo_alternativo.id_for_label}}">Cantidad de cartas mazo alternativo</label>
+                                        <input class="form-control rounded-pill" type="number" min="0" max="15" id='{{ form.deck.cantidad_cartas_mazo_alternativo.id_for_label }}' name="{{ form.deck.cantidad_cartas_mazo_alternativo.html_name }}" placeholder="(0-15)" {% if not form.deck.direcciont.value is None %} value="{{form.deck.cantidad_cartas_mazo_alternativo.value}}" {% endif %} max-length="2">
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group mb-3">
+                                        {{form.cantidad_cartas_mazo_extra.errors}}
+                                        <label class="label" for="{{form.cantidad_cartas_mazo_extra.id_for_label}}">Cantidad de cartas mazo extra</label>
+                                        <input class="form-control rounded-pill" type="number" min="0" max="15" id='{{ form.deck.cantidad_cartas_mazo_extra.id_for_label }}' name="{{ form.deck.cantidad_cartas_mazo_extra.html_name }}" placeholder="(0-15)" {% if not form.deck.cantidad_cartas_mazo_extra.value is None %} value="{{ form.deck.cantidad_cartas_mazo_extra.value }}" {% endif %} max-length="2">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6"> 
+                                    <div class="form-group mb-3">
+                                        {{form.arquetipo_principal.nombrea.errors}}
+                                        <label class="label" for="{{form.arquetipo_principal.nombrea.id_for_label}}">Arquetipo principal</label>
+                                        <input class="form-control rounded-pill" type="text" id='{{ form.arquetipo_principal.nombrea.id_for_label }}' name="{{ form.arquetipo_principal.nombrea.html_name }}" placeholder="Ej:Exodia" {% if not form.arquetipo_principal.nombrea.value is None %} value="{{form.arquetipo_principal.nombrea.value}}" {% endif %} max-length="10">
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group mb-3">
+                                        {{form.arquetipo_adicional.nombrea.errors}}
+                                        <label class="label" for="{{form.arquetipo_adicional.nombrea.id_for_label}}">Arquetipo adicional </label>
+                                        <input class="form-control rounded-pill" type="text" id='{{ form.arquetipo_adicional.nombrea.id_for_label }}' name="{{ form.arquetipo_adicional.nombrea.html_name }}" placeholder="Ej:Exodia" {% if not form.arquetipo_adicional.nombrea.value is None %} value="{{form.arquetipo_adicional.nombrea.value}}" {% endif %} max-length="10">
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="form-group">
+                                    <button type="submit" class="form-control btn btn-primary rounded-pill submit px-3">Crear</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2"></div>
+        </div>
+    </div>
+</section>
+
+<script src="{% static 'js/jquery.min.js' %}"></script>
+  	    <script src="{% static 'js/popper.js' %}"></script>
+  	    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  	    <script src="{% static 'js/main.js' %}"></script>
+    </body>
 </html>

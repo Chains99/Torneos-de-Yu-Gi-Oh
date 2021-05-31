@@ -64,3 +64,12 @@ Crear cuenta
         </div>
     </section>
 {% endblock %}
+
+{% block finalJS %}
+    <script>
+        $(document).ready(function (){
+            $(".nav-item").removeClass("active");
+            $("#admint").addClass("active");
+        });
+    </script>
+{% endblock %}

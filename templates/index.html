@@ -29,18 +29,24 @@ Inicio
         <div class="row">
             <div class="col-6">
                 {% if torneos_no_iniciados %}
-                <h4 class="text-center"> Torneos abiertos a inscripción </h4>
-                {% for torneo in torneos_no_iniciados %}
-                    <div class="torneo d-inline-flex w-100 justify-content-between">
-                        <a class="torneo-name" href="#">{{torneo.nombret}}</a>
-                        <p class="torneo-dir">{{torneo.fecha_hora_de_iniciot}}</p>
-                    </div>
-                {% endfor %}
+                    <h4 class="text-center"> Torneos abiertos a inscripción </h4>
+                    {% for torneo in torneos_no_iniciados %}
+                        <div class="torneo d-inline-flex w-100 justify-content-between">
+                            <a class="torneo-name" href="{% url 'torneo' torneo.idt %}">{{torneo.nombret}}</a>
+                            <p class="torneo-dir">{{torneo.fecha_hora_de_iniciot}}</p>
+                        </div>
+                    {% endfor %}
                 {% endif %}
             </div>
             <div class="col-6">
-                <h4 class="text-center"> Top 10 de campeones </h4>
-                
+                {% if campeones %}
+                    <h4 class="text-center"> Top 10 de campeones </h4>
+                    {% for campeon in campeones %}
+                        <div class="torneo d-inline-flex w-100 justify-content-between">
+                            <p class="torneo-dir">{{campeon.idj}}</p>
+                        </div>
+                    {% endfor %}
+                {% endif %}
             </div>
         </div>
     </section>

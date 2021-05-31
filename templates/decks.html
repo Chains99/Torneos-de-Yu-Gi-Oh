@@ -1,139 +1,112 @@
-<!DOCTYPE html>
-<html>
-    {% load static %}
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- This template of the HomePage is a child of MainTemplate -->
+{% extends "_main_template.html" %}
 
-    <title>Mi Cuenta</title>
+<!-- Load static files -->
+{% load static %}
 
-    <link rel="stylesheet" href="{% static 'css/style-page.css' %}">
-    <!-- Our Custom CSS -->
-    <link rel="stylesheet" href="{% static 'css/style3.css' %}">
-    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
-    <!-- Scrollbar Custom CSS -->
-    <link rel="stylesheet" href="{% static 'css/jquery.mCustomScrollbar.min.css' %}">
+<!-- Put title -->
+{%block title%}
+Mi Perfil
+{% endblock %}
 
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/jquery.mCustomScrollbar.min.css' %}">
+{% endblock %}
 
-</head>
+{% block beforeHeader %}
+    <div class="overlay"></div>
+{% endblock %}
 
-<body>
+<!-- Put content -->
+{% block content %}
+<section class="ftco-section mb-3 mt-3">
     <div class="wrapper">
         <!-- Sidebar  -->
-        <nav id="sidebar">
+        <nav id="sidebar" class="text-white">
             <div id="dismiss">
                 <i class="fa fa-arrow-left"></i>
             </div>
 
             <div class="sidebar-header">
-                <h3>Decks</h3>
+                <h3 class="text-white">Mis Decks</h3>
             </div>
 
-            <ul class="list-unstyled components">
-                <li>
-                    <a href="{% url 'torneos_inscrito' %}">Torneos</a>
-                </li>
-            </ul>
             <ul class="list-unstyled CTAs">
                 <li>
-                    <a href="{% url 'editar_info' %}" class="download">Editar Info. Personal</a>
+                    <a href="{% url 'torneos_inscrito' %}" class="btn btn-primary rounded font-weight-bold"><i class="fa fa-trophy"></i> Torneos Inscritos</a>
                 </li>
                 <li>
-                    <a href="{% url 'crear_deck' %}" class="download">Crear Deck</a>
+                    <a href="{% url 'editar_info' %}" class="btn btn-primary rounded font-weight-bold"><i class="fa fa-pencil mr-1"></i> Info. Personal</a>
+                </li>
+                <li>
+                    <a href="{% url 'crear_deck' %}" class="btn btn-primary rounded font-weight-bold"><i class="fa fa-plus mr-1"></i> Crear Deck</a>
                 </li>
             </ul>
         </nav>
-
-        <!-- Page Content  -->
-        <div id="content">
-
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="container-fluid">
-
-                    <button type="button" id="sidebarCollapse" class="btn btn-info">
-                        <i class="fa fa-align-left"></i>
-                        <span>Menú</span>
-                    </button>
-                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <i class="fa fa-align-justify"></i>
-                    </button>
-
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="nav navbar-nav ml-auto">
-                            <li class="nav-item active">
-                                <a class="nav-link" href="{% url 'index'%}">Inicio</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'torneos' %}">Torneos</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'arquetipos' %}">Arquetipos</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'consultas' %}">Consultas</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-            <div class="text-center">
-                <h4>Mis Decks</h4>
-            </div>
-            <br><br>
-            <div class="container">
-                <div class="row">
-                    <div class="col">
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Nombre</th>
-                                    <th>No. de cartas mazo principal</th>
-                                    <th>No. de cartas mazo alternativo</th>
-                                    <th>No. de cartas mazo extra</th>
-                                    <th>Arquetipo principal</th>
-                                    <th>Arquetipo adicional</th>
-                                    <th>Opción</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for deck in decks %}
-                                <tr>
-                                    <td>{{deck.nombred}}</td>
-                                    <td>{{deck.cantidad_cartas_mazo}}</td>
-                                    <td>{{deck.cantidad_cartas_mazo_alternativo}}</td>
-                                    <td>{{deck.cantidad_cartas_mazo_extra}}</td>
-                                    <td>{{deck.ida_principal.nombrea}}</td>
-                                    <td>{{deck.ida_adicional.nombrea}}</td>
-                                    <td>
-                                        {% if perms.decks.change_deck %}
-                                            <a href="{% url 'editar_deck' deck.idd %}">Editar</a>
-                                        {% endif %}
-                                        {% if perms.decks.delete_deck %}
-                                            <a href="{% url 'eliminar_deck' deck.idd %}">Eliminar</a>
-                                        {% endif %}
-                                    </td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
+        
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col d-flex justify-content-between">
+                <button type="button" id="sidebarCollapse" class="btn btn-primary rounded mb-3">
+                    <i class="fa fa-align-left"></i>
+                    <span>Menú</span>
+                </button>
+                <div class="text-black mr-3 mt-2 d-flex">
+                    <p class="ml-5 mr-3">Nombre de usuario</p><span class=" font-weight-bold">{{user}}</span>
                 </div>
             </div>
         </div>
     </div>
+    <div class="text-center">
+        <h4>Mis Decks</h4>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <table class="table table-striped table-responsive">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>No. de cartas mazo principal</th>
+                            <th>No. de cartas mazo alternativo</th>
+                            <th>No. de cartas mazo extra</th>
+                            <th>Arquetipo principal</th>
+                            <th>Arquetipo adicional</th>
+                            <th>Opción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for deck in decks %}
+                        <tr>
+                            <td>{{deck.nombred}}</td>
+                            <td>{{deck.cantidad_cartas_mazo}}</td>
+                            <td>{{deck.cantidad_cartas_mazo_alternativo}}</td>
+                            <td>{{deck.cantidad_cartas_mazo_extra}}</td>
+                            <td>{{deck.ida_principal.nombrea}}</td>
+                            <td>{{deck.ida_adicional.nombrea}}</td>
+                            <td class="d-flex justify-content-between">
+                                {% if perms.decks.change_deck %}
+                                    <a class="btn btn-primary" href="{% url 'editar_deck' deck.idd %}"><i class="fa fa-pencil"></i></a>
+                                {% endif %}
+                                {% if perms.decks.delete_deck %}
+                                    <a class="btn btn-primary" href="{% url 'eliminar_deck' deck.idd %}"><i class="fa fa-trash"></i></a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
-    <div class="overlay"></div>
+</section>
 
-    <!-- jQuery CDN - Slim version (=without AJAX) -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <!-- Popper.JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-    <!-- Bootstrap JS -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-    <!-- jQuery Custom Scroller CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+{% endblock %}
 
+{% block finalJS %}
+    <script src="{% static 'js/jquery.mCustomScrollbar.concat.min.js' %}"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $("#sidebar").mCustomScrollbar({
@@ -151,8 +124,9 @@
                 $('.collapse.in').toggleClass('in');
                 $('a[aria-expanded=true]').attr('aria-expanded', 'false');
             });
+            
+            $(".nav-item").removeClass("active");
+            $("#perfil").addClass("active");
         });
     </script>
-</body>
-
-</html>
+{% endblock %}

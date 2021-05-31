@@ -4,7 +4,7 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-light rounded mb-1">
                     <div class="container-fluid">
                         <h3><a id="brand" href="{% url 'index' %}">Sitio Oficial de Yu-Gi-Oh!</a></h3>
-                        <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <button class="btn btn-primary d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <i class="fa fa-align-justify"></i>
                         </button>
 
@@ -39,7 +39,7 @@
                                 {% endif %}
                                 
                                 {% if perms.users.change_jugador %}
-                                    <li class="nav-item">
+                                    <li class="nav-item" id="perfil">
                                         <a class="nav-link" href="{% url 'decks' %}">Mi perfil</a>
                                     </li>
                                 {% endif %}

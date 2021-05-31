@@ -88,3 +88,13 @@ Crear Deck
     </div>
 </section>
 {% endblock %}
+
+
+{% block finalJS %}
+<script>
+    $(document).ready(function(){
+        $(".nav-item").removeClass("active");
+        $("#perfil").addClass("active");
+    });
+</script>
+{% endblock %}

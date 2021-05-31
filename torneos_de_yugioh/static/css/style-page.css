@@ -60,6 +60,12 @@
   font-size: 16px;
 }
 
+.text-red {
+  color: red !important;
+}
+.arch:hover {
+  background-color: #fcfcfc;
+}
 .torneo-name{
   color: black;
 }

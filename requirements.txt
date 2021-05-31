@@ -1,0 +1,6 @@
+Django==3.2.3
+django-betterforms==1.2
+mysqlclient==2.0.3
+six==1.16.0
+django-composite-foreignkey==1.1.0
+django-compositepk-model==1.0.2

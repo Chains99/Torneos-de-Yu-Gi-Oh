@@ -40,6 +40,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'aplicaciones.principal',
     'aplicaciones.torneos',
+    'aplicaciones.users',
+    'aplicaciones.admins_torneos',
+    'aplicaciones.admins_partidas',
+    'aplicaciones.decks',
+    'aplicaciones.eventos'
 ]
 
 MIDDLEWARE = [
@@ -81,7 +86,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'yugioh_database',
         'USER': 'root',
-        'PASSWORD':'Salario123-',
+        'PASSWORD':'Chains&1999',
         'HOST': 'localhost',
         'PORT':3306,
     }

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar lugar alcanzado</title>
+</head>
+<body>
+    <h1> Asigne lugar alcanzado al participante {{participacion.participante.idj.idj}} en la ronda {{participacion.idr}} del torneo {{participacion.participante.idt.nombret}}({{participacion.participante.idt.idt}})</h1>
+    <form method="post">  {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit">Asignar</button>
+    </form>
+</body>
+</html>

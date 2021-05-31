@@ -1,15 +1,108 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear torneo</title>
-</head>
-<body>
-    <form method="post">  {% csrf_token %}
-        {{form.as_p}}
-        <button type="submit">Registrar</button>
-    </form>
-</body>
-</html>
+{% extends "_auth_template.html" %}
+
+{% block title %}
+Crear cuenta
+{% endblock %}
+
+{% block content %}
+    <section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-12">
+					<div class="wrap d-flex align-items-center">
+					<div class="signup-wrap p-4 p-md-5">
+			      	    <div class="d-flex">
+			      		    <div class="w-100 text-center">
+			      			    <h3 class="mb-4">Crear cuenta</h3>
+			      		    </div>
+			        	</div>
+						<form class="signup-form" method="post">
+                            {% csrf_token %}
+                            {{ form.non_field_errors }}
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group mb-3">
+                                        {{ form.user.username.errors }}
+                                        <label class="label" for="{{ form.user.username.id_for_label }}">Nombre de Usuario</label> 
+                                        <input type="text" class="form-control rounded-pill" name="{{ form.user.username.html_name }}" placeholder="Ej: atp_ariel" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" required id="{{ form.user.username.id_for_label }}">
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group mb-3">
+                                        {{ form.user.email.errors }}
+                                        <label class="label" for="{{ form.user.email.id_for_label }}">Correo electrónico</label>
+                                        <input type="email" class="form-control rounded-pill" name="{{ form.user.email.html_name }}" required  placeholder="Ej: usich37@gmail.com" id="{{ form.user.email.id_for_label }}">
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group mb-3">
+                                        {{ form.user.password1.errors }}
+                                        <label class="label" for="{{ form.user.password1.id_for_label }}">Contraseña</label>
+                                        <input type="password" class="form-control rounded-pill" placeholder="Escribe tu contraseña" name="{{ form.user.password1.html_name }}" autocomplete="current-password" required id="{{ form.user.password1.id_for_label }}">
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group mb-3">
+                                        {{ form.user.password2.errors }}
+                                        <label class="label" for="{{ form.user.password2.id_for_label }}">Confirmar contraseña</label>
+                                        <input type="password" class="form-control rounded-pill" placeholder="Escribe tu contraseña" name="{{ form.user.password2.html_name }}" autocomplete="current-password" required id="{{ form.user.password2.id_for_label }}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group mb-3">
+                                {{ form.jugador.nombrej.errors }}
+                                <label class="label" for="{{ form.jugador.nombrej.id_for_label }}">Nombre y Apellidos</label>
+                                <input type="text" class="form-control rounded-pill" placeholder="Ej: Ariel Triana" name="{{ form.jugador.nombrej.html_name }}" required autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" id="{{ form.jugador.nombrej.id_for_label }}"/>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group mb-3">
+                                        {{ form.jugador.telefono.errors }}
+                                        <label class="label" for="{{ form.jugador.telefono.id_for_label }}">Teléfono</label>
+                                        <input type="tel" class="form-control rounded-pill" placeholder="Ej: +53  5428 94 04" name="{{ form.jugador.telefono.html_name }}" required autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" id="{{ form.jugador.telefono.id_for_label }}"/>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group mb-3">
+                                        {{ form.jugador.telefono.errors }}
+                                        <label class="label" for="{{ form.jugador.direccionj.id_for_label }}">Dirección</label>
+                                        <input type="tel" class="form-control rounded-pill" placeholder="Ej: Concepcion 177" name="{{ form.jugador.direccionj.html_name }}" required autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" id="{{ form.jugador.direccionj.id_for_label }}"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group mb-3">
+                                        {{ form.provincia.nombrep.errors }}
+                                        <label class="label" for="{{ form.provincia.nombrep.id_for_label }}">Provincia</label>
+                                        <input type="text" class="form-control rounded-pill" placeholder="Ej: La Habana" name="{{ form.provincia.nombrep.html_name }}" required autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" id="{{ form.provincia.nombrep.id_for_label }}"/>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group mb-3">
+                                        {{ form.municipio.nombrem.errors }}
+                                        <label class="label" for="{{ form.municipio.nombrem.id_for_label }}">Dirección</label>
+                                        <input type="text" class="form-control rounded-pill" placeholder="Ej: 10 de Octubre " name="{{ form.municipio.nombrem.html_name }}" required autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" id="{{ form.municipio.nombrem.id_for_label }}"/>
+                                    </div>
+                                </div>
+                            </div>
+                            
+		                    <div class="form-group">
+		            	        <button type="submit" class="form-control btn btn-primary rounded-pill submit px-3">Crear</button>
+		                    </div>
+		                </form>
+                        <div class="text">
+		                    <p class="text-center">¿Tienes una cuenta? <a href="{% url 'login' %}">Ingresar</a></p>
+		                    <p class="text-center"><a href="{% url 'index' %}"><< Volver al Inicio</a></p>
+                        </div>
+			        </div>
+
+		            </div>
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}

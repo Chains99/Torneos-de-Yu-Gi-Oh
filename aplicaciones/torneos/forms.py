@@ -5,7 +5,17 @@ class TorneoForm(forms.ModelForm):
     class Meta:
         model=Torneo
         fields='__all__'
-        labels={'idt':'ID (No más de 4 caracteres)',
-        'nombret':'Nombre (No más de 20 caracteres)',
-        'direcciont':'Dirección (No más de 25 caracteres)',
+        labels={'idt':'ID (No más de 10 caracteres)',
+        'nombret':'Nombre (No más de 100 caracteres)',
+        'direcciont':'Dirección (No más de 100 caracteres)',
         'fecha_hora_de_iniciot': 'Fecha y hora de inicio (Formato AAAA-MM-DD HH:MM)'}
+
+class EditarTorneoForm(forms.ModelForm):
+    class Meta:
+        model=Torneo
+        fields=['nombret','direcciont','fecha_hora_de_iniciot']
+        labels={
+            'nombret':'Nombre (No más de 100 caracteres)',
+            'direcciont':'Dirección (No más de 100 caracteres)',
+            'fecha_hora_de_iniciot': 'Fecha y hora de inicio (Formato AAAA-MM-DD HH:MM)'
+        }

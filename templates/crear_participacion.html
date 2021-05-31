@@ -1,15 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear participacion</title>
-</head>
-<body>
-    <form method="post">  {% csrf_token %}
-        {{form.as_p}}
-        <button type="submit">Crear</button>
-    </form>
-</body>
-</html>
+{% extends "_main_template.html" %}
+
+{% block title %}
+Crear participación
+{% endblock %}
+
+{% block content %}
+<section class="ftco-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-2"></div>
+            <div class="col-lg-6 col-md-8">
+                <div class="wrap p-5 mb-3 mt-3">
+                    <div class="w-100 text-center">
+                        <h3 class="mb-4">Agregar participante a la ronda</h3>
+                    </div>
+                    <form class="text-center" method="post">  
+                        {% csrf_token %}
+                        {{form.non_field_errors}}
+                        <div class="form-group mb-4">
+                            {{form.idr.errors}}
+                            <label class="label" for="{{form.idr.id_for_label}}">id ronda</label>
+                            <input required class="form-control rounded-pill" type="text" max-length="10" placeholder="Máximo 10 caracteres" name="{{form.idr.html_name}}" id="{{form.idr.id_for_label}}"/>
+                        </div>
+                        <div class="form-group mb-4">
+                            {{form.idj.errors}}
+                            <label class="label" for="{{form.idj.id_for_label}}">nombre de usuario</label>
+                            <input required class="form-control rounded-pill" type="text" max-length="150" placeholder="Ej. juan19" name="{{form.idj.html_name}}" id="{{form.idj.id_for_label}}"/>
+                        </div>
+                        <button class="form-control rounded-pill btn btn-primary" type="submit">Agregar</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-2"></div>
+        <div>
+    </div>
+</section>
+{% endblock %}

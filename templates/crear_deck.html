@@ -1,26 +1,16 @@
-<!DOCTYPE html>
+<!-- This template of the HomePage is a child of MainTemplate -->
+{% extends "_main_template.html" %}
+
+<!-- Load static files -->
 {% load static %}
-<html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <!-- Title of the page -->
-        <title> {% block title%} {%endblock%} - Torneos de Yu-Gi-Oh!</title>
-        <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">  
+<!-- Put title -->
+{%block title%}
+Crear Deck
+{% endblock %}
 
-        <link rel="stylesheet" href="{% static 'css/style-page.css' %}">
 
-        <!-- Block to put other CSS files on child template-->
-        {% block css %}
-        {% endblock %}
-
-        <!-- Block to put other JS files on child template-->
-        {% block js %}
-        {% endblock %}
-    </head>
-    <body>
+{% block content %}
 <section class='ftco-section'>
     <div class="container">
         <div class="row justify-content-center mt-3 mb-3">
@@ -97,10 +87,4 @@
         </div>
     </div>
 </section>
-
-<script src="{% static 'js/jquery.min.js' %}"></script>
-  	    <script src="{% static 'js/popper.js' %}"></script>
-  	    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-  	    <script src="{% static 'js/main.js' %}"></script>
-    </body>
-</html>
+{% endblock %}

@@ -1,59 +1,31 @@
-<!doctype html>
-{% load static %}
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-
-
-    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-    
-
-
-  </head>
-  <body>
-  
-
-  <div class="content">
-    <h4>Rondas</h4>
-    <br><br>
-    <div class="container">
-      <div class = "d-flex justify-content-center">
-        <div style="width:575px;">
+<div class="content">
+  <h4 class="mb-5">Rondas</h4>
+  <div class="container">
+    <div class = "d-flex justify-content-center">
+      <div style="width:575px;">
         <div class="table-responsive custom-table-responsive" >
 
           <table class="table custom-table" style="width:550;">
             <div class = "d-flex justify-content-center">
-              <thead>
-              </thead>
+              <thead></thead>
               <tbody>
                 {% for ronda,clave in rondas_claves %}
-                <tr scope="row">
-                  <td>
-                    <div class="text-center">
-                      <a href="{% url 'ronda' clave %}"><h5>Ronda {{ronda.idr}}</h5></a>
+                  <tr scope="row">
+                    <td>
+                      <div class="text-center">
+                        <a href="{% url 'ronda' clave %}"><h5>Ronda {{ronda.idr}}</h5></a>
+                      </div>
                     </td>
-                </tr>
-                <tr class="spacer"><td colspan="100"></td></tr>   
+                  </tr>
+                  <tr class="spacer">
+                    <td colspan="100"></td>
+                  </tr>   
                 {% endfor %}     
               </tbody>
-            </div>
             </div>
           </table>
         </div>
       </div>
     </div>
-    </div>
-    
-
-    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
-    <script src="{% static 'js/popper.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'js/main.js' %}"></script>
-  </body>
-</html>
+  </div>
+</div>

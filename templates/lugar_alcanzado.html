@@ -1,16 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar lugar alcanzado</title>
-</head>
-<body>
-    <h1> Asigne lugar alcanzado al participante {{participante.idj.idj}} en el torneo {{participante.idt.nombret}}({{participante.idt.idt}})</h1>
-    <form method="post">  {% csrf_token %}
-        {{form.as_p}}
-        <button type="submit">Asignar</button>
-    </form>
-</body>
-</html>
+<!-- This template of the HomePage is a child of MainTemplate -->
+{% extends "_main_template.html" %}
+
+<!-- Load static files -->
+{% load static %}
+
+<!-- Put title -->
+{%block title%}
+Lugar Alcanzado
+{% endblock %}
+
+<!-- Put content -->
+{% block content %}
+<section class="ftco-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-2"></div>
+            <div class="col-lg-6 col-md-8">
+                <div class="wrap p-5 mt-3 mb-3">
+                    <h3> Asigne lugar alcanzado al participante {{participante.idj.idj}} en el torneo {{participante.idt.nombret}}({{participante.idt.idt}})</h3>
+                    <form class="text-center" method="post">  
+                        {% csrf_token %}
+                        {{form.non_field_errors}}
+                        <div class="form-group mb-4">
+                            {{form.lugar_alcanzado.errors}}
+                            <label class="label" for="{{form.lugar_alcanzado.id_for_label}}">Lugar alcanzado</label>
+                            <input type="text" class="form-control rounded-pill" id="{{form.lugar_alcanzado.id_for_label}}" name="{{form.lugar_alcanzado.html_name}}" placeholder="Ej. Campeon" {% if not form.lugar_alcanzado.value is None %} value="{{form.lugar_alcanzado.value}}" {% endif %}/>
+                        </div>
+                        <button class="form-control btn btn-primary rounded-pill" type="submit">Asignar</button>
+                    </form> 
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-2"></div>
+        <div>
+    </div>
+</section>
+{% endblock %}

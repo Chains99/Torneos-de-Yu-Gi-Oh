@@ -55,7 +55,18 @@
     width: 25%;
   }
 }
+.fa-telegram{
+  color: #269EDA;
+  font-size: 16px;
+}
 
+.torneo-name{
+  color: black;
+}
+.torneo-name:hover,
+.torneo-name:focus{
+  color: red;
+}
 .bg-yugioh-bg
 {
   background-color: #ebebeb;

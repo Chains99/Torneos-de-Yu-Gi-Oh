@@ -1,15 +1,82 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear o editar partida</title>
-</head>
-<body>
-    <form method="post">  {% csrf_token %}
-        {{form.as_p}}
-        <button type="submit">Crear o Editar</button>
-    </form>
-</body>
-</html>
+<!-- This template of the HomePage is a child of MainTemplate -->
+{% extends "_main_template.html" %}
+
+<!-- Load static files -->
+{% load static %}
+
+<!-- Put title -->
+{%block title%}
+Crear o Editar Partida
+{% endblock %}
+
+<!-- Put content -->
+{% block content %}
+<section class='ftco-section'>
+    <div class="container">
+        <div class="row justify-content-center mt-3 mb-3">
+            <div class="col-2"></div>
+            <div class="col-8">
+                <div class="wrap d-flex align-items-center">
+					<div class="signup-wrap p-4 p-md-5">
+                        <div class="d-flex">
+			      		    <div class="w-100 text-center">
+			      			    <h3 class="mb-4">Crear o Editar Partida</h3>
+			      		    </div>
+			        	</div>
+                        <form method="POST"> 
+                            {% csrf_token %}
+                            {{ form.non_field_errors }}
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group mb-3">
+                                        {{form.idj1.errors}}
+                                        <label class="label" for="{{form.idj1.id_for_label}}">Nombre de usuario del jugador 1</label>
+                                        <input class="form-control rounded-pill" type="text" id='{{ form.idj1.id_for_label }}"' name="{{ form.idj1.html_name }}" placeholder="Escribe un nombre de usuario" {% if not form.idj1.value is None %} value="{{form.idj1.value}}" {% endif %} max-length="15">
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group mb-3">
+                                        {{form.idj2.errors}}
+                                        <label class="label" for="{{form.idj2.id_for_label}}">Nombre de usuario del jugador 2</label>
+                                        <input class="form-control rounded-pill" type="text" id="{{ form.idj2.id_for_label }}" name="{{ form.idj2.html_name }}" placeholder="Escribe un nombre de usuario" {% if not form.idj2.value is None %} value="{{form.idj2.value}}" {% endif %} max-length="15">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group mb-3">
+                                        {{form.fecha_hora_de_iniciop.errors}}
+                                        <label class="label" for="{{form.fecha_hora_de_iniciop.id_for_label}}">Fecha y Hora de inicio</label>
+                                        <input class="form-control rounded-pill" type="datetime" id='{{ form.fecha_hora_de_iniciop.id_for_label }}"' name="{{ form.fecha_hora_de_iniciop.html_name }}" placeholder="AAAA-MM-DD HH:MM" {% if not form.fecha_hora_de_iniciop.value is None %} value="{{form.fecha_hora_de_iniciop.value}}" {% endif %} max-length="16">
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group mb-3">
+                                        {{form.fecha_hora_de_finalizacionp.errors}}
+                                        <label class="label" for="{{form.fecha_hora_de_finalizacionp.id_for_label}}">Fecha y Hora de finalización</label>
+                                        <input class="form-control rounded-pill" type="datatime" id='{{ form.fecha_hora_de_finalizacionp.id_for_label }}"' name="{{ form.fecha_hora_de_finalizacionp.html_name }}" placeholder="AAAA-MM-DD HH:MM" {% if not form.fecha_hora_de_finalizacionp.value is None %} value="{{ form.fecha_hora_de_finalizacionp.value }}" {% endif %} max-length="16">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group mb-3">
+                                        {{form.resultado.errors}}
+                                        <label class="label" for="{{form.resultado.id_for_label}}">Resultado</label>
+                                        <input class="form-control rounded-pill" type="text" id='{{ form.resultado.id_for_label }}"' name="{{ form.resultado.html_name }}" placeholder="0-2, 2-0, 1-2, 2-1" {% if not form.resultado.value is None %} value="{{form.resultado.value}}" {% endif %} max-length="3">
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="form-group">
+                                    <button type="submit" class="form-control btn btn-primary rounded-pill submit px-3">Crear</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2"></div>
+        </div>
+    </div>
+</section>
+{% endblock %}  

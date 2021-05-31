@@ -1,34 +1,84 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar información personal</title>
-</head>
-<body>
+<!-- This template of the HomePage is a child of MainTemplate -->
+{% extends "_main_template.html" %}
 
-    <div>
-        <nav>
-        <ul>
-            <li>
-                <a href="{% url 'decks' %}">Mis decks</a>
-            </li>
-            <li>
-                <a href="{% url 'editar_info' %}">Mi información personal</a>
-            </li>
-             <li>
-                <a href="{% url 'torneos_inscrito' %}">Mis inscripciones</a>
-            </li>
-        </ul>
-        </nav>
-    </div>
+<!-- Load static files -->
+{% load static %}
 
-    <div>
-    <form method="post">  {% csrf_token %}
-        {{form.as_p}}
-        <button type="submit">Editar</button>
-    </form>
-    </div>
-</body>
-</html>
+<!-- Put title -->
+{%block title%}
+Editar Info. Personal
+{% endblock %}
+
+
+{% block content %}
+    <section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-12">
+					<div class="wrap d-flex align-items-center">
+					<div class="signup-wrap p-4 p-md-5">
+			      	    <div class="d-flex">
+			      		    <div class="w-100 text-center">
+			      			    <h3 class="mb-4">Editar Info. Personal</h3>
+			      		    </div>
+			        	</div>
+						<form class="signup-form" method="post">
+                            {% csrf_token %}
+                            {{ form.non_field_errors }}
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group mb-3">
+                                        {{ form.jugador.nombrej.errors }}
+                                        <label class="label" for="{{ form.jugador.nombrej.id_for_label }}">Nombre y Apellidos</label> 
+                                        <input type="text" class="form-control rounded-pill" name="{{ form.jugador.nombrej.html_name }}" placeholder="Ej: Alan Rodriguez" {% if not form.jugador.nombrej.value is None %} value="{{form.jugador.nombrej.value}}" {% endif %} max-length="50">
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group mb-3">
+                                        {{ form.jugador.telefono.errors }}
+                                        <label class="label" for="{{ form.jugador.telefono.id_for_label }}">Teléfono</label>
+                                        <input type="tel" class="form-control rounded-pill" name="{{ form.jugador.telefono.html_name }}" required  placeholder="Ej: 5354739817" {% if not form.jugador.telefono.value is None %} value="{{form.jugador.telefono.value}}" {% endif %} max-length="12">
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group mb-3">
+                                        {{ form.provincia.nombrep.errors }}
+                                        <label class="label" for="{{ form.provincia.nombrep.id_for_label }}">Provincia</label>
+                                        <input type="text" class="form-control rounded-pill" placeholder="Ej: La Habana" name="{{ form.provincia.nombrep.html_name }}" {% if not form.provincia.nombrep.value is None %} value="{{form.provincia.nombrep.value}}" {% endif %} max-length="20">
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group mb-3">
+                                        {{ form.municipio.nombrem.errors }}
+                                        <label class="label" for="{{ form.municipio.nombrem.id_for_label }}">Municipio</label>
+                                        <input type="text" class="form-control rounded-pill" placeholder="Escribe tu municipio" name="{{ form.municipio.nombrem.html_name }}" {% if not form.municipio.nombrem.value is None %} value="{{form.municipio.nombrem.value}}" {% endif %} max-length="20">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                            <div class="col">
+                                <div class="form-group mb-3">
+                                    {{ form.jugador.direccionj.errors }}
+                                        <label class="label" for="{{ form.jugador.direccionj.id_for_label }}">Dirección</label>
+                                        <input type="text" class="form-control rounded-pill" placeholder="Escribe tu dirección" name="{{ form.jugador.direccionj.html_name }}"  {% if not form.jugador.direccionj.value is None %} value="{{form.jugador.direccionj.value}}" {% endif %} max-length="10">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                            <div class="col">
+		                    <div class="form-group">
+		            	        <button type="submit" class="form-control btn btn-primary rounded-pill submit px-3" >Editar</button>
+		                    </div>
+                        </div>
+                    </div>
+		                </form>
+			        </div>
+		            </div>
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}

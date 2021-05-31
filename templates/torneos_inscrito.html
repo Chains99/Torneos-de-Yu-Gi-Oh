@@ -35,10 +35,15 @@
 
             <ul class="list-unstyled components">
                 <li>
-                    <a href="#">Info. Personal</a>
+                    <a href="{% url 'decks' %}">Decks</a>
+                </li>
+            </ul>
+            <ul class="list-unstyled CTAs">
+                <li>
+                    <a href="{% url 'editar_info' %}" class="download">Editar Info. Personal</a>
                 </li>
                 <li>
-                    <a href="{% url 'decks' %}">Decks</a>
+                    <a href="{% url 'crear_deck' %}" class="download">Crear Deck</a>
                 </li>
             </ul>
         </nav>

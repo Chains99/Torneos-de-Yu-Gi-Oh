@@ -3,7 +3,7 @@
 	<div class="container">
 		<nav class="navbar navbar-expand-lg ftco_navbar ftco-navbar-light" id="ftco-navbar">
 	        <div class="container">
-		       	<a class="navbar-brand" href="{% url 'index'%}">Torneos de Yu-gi-oh!</a>
+		       	<a class="navbar-brand" href="{% url 'index'%}">Sitio Oficial de Yu-gi-oh!</a>
 		        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 		            <span class="fa fa-bars"></span> Menu
 		        </button>
@@ -19,7 +19,7 @@
                             <a class="nav-link" href="{% url 'arquetipos' %}">Arquetipos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Consultas</a>
+                            <a class="nav-link" href="{% url 'consultas' %}">Consultas</a>
                         </li>
 
                         {% if perms.torneos.add_admintorneos %}

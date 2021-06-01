@@ -1,15 +1,64 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inscripcion</title>
-</head>
-<body>
-    <form method="post">  {% csrf_token %}
-        {{form.as_p}}
-        <button type="submit">Inscribirse</button>
-    </form>
-</body>
-</html>
+<!-- This template of the HomePage is a child of MainTemplate -->
+{% extends "_main_template.html" %}
+
+<!-- Load static files -->
+{% load static %}
+
+<!-- Put title -->
+{%block title%}
+Inscripcion
+{% endblock %}
+
+<!-- Put content -->
+{% block content %}
+<section class="ftco-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2 col-md-1"></div>
+            <div class="col-lg-8 col-md-10">
+                <div class="wrap p-4 m-5">
+                    <div class="text-center">
+                        <h3>Inscripción en torneo</h3>
+                    </div>
+                    <form method="post">  {% csrf_token %}
+                        {{form.non_field_errors}}
+                        <div class="row text-center">
+                            <div class="col-12">
+                                <div class="form-group mb-3">
+                                    {{form.deck_seleccionado.errors}}
+                                    <label class="label" for="{{form.deck_seleccionado.id_for_label}}">decks</label>
+                                    <ul class="row"id="{{form.deck_seleccionado.id_for_label}}">
+                                        {% for i in form.deck_seleccionado %}
+                                            <div class="col-3">
+                                                {{i}}
+                                            </div>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            </div class="col-12">
+                                <div class="form-group mb-3">
+                                    <button class="btn btn-primary rounded-pill form-control" type="submit">Inscribirse</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-1"></div>
+        </div>
+    </div>
+</section>
+    
+{% endblock %}
+
+{% block finalJS %}
+    <script>
+        $(document).ready(function (){
+            $(".nav-item").removeClass("active");
+            $("#torneo").addClass("active");
+        });
+    </script>
+{% endblock %}

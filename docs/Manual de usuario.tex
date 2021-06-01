@@ -1,0 +1,228 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{manfnt}
+\usepackage{amsfonts}
+\usepackage[margin=2cm]{geometry}
+\usepackage[spanish]{babel}
+\usepackage{graphicx}
+\usepackage[pdftex]{hyperref}
+
+\begin{document}
+	\title{\Huge Manual de usuario\\
+		Nombre de la aplicaci\'on: Torneos de Yu-Gi-Oh!}
+	
+	\author{ Desarrolladores:\\
+		Ayl\'in \'Alvarez Santos CI: 99091008434\\
+		Rocio Ortiz Gancedo CI: 00061767398\\
+		Carlos Toledo Silva CI: 99031708422\\
+		Ariel Alfonso Triana P\'erez CI: 99110107387
+	}
+	\date{}
+	\maketitle
+	
+	{\Large\tableofcontents}
+	
+	\newpage
+	
+	\section{Objetivos del proyecto}
+	
+    La organización de torneos internacionales de Yu-Gi-Oh! supone un reto de grandes dimensiones para cualquier equipo de trabajo, pues se tiene que lidear con inscripciones masivas para cada uno de los torneos a realizar. Además estas inscripciones se hacen llegar por distintos medios de comunicación lo que supone un gran esfuerzo en la recopilación de los datos , la persistencia y correctitud de cada uno de los formularios de solicitud de inscripción a un torneo. Luego es necesario mantener toda la información de las partidas, rondas, campeones de   torneos y otras estadísticas de interés para el equipo organizador.
+
+    El presente proyecto tiene como objetivo desarrollar un producto de software que resuelva estos problemas que presenta el equipo organizador de los torneos. El producto de software desarrollado bajo el nombre \textbf{Torneos de Yu-Gi-Oh!} es una aplicación web que tiene como objetivos:
+   
+    \begin{enumerate}
+            \item Facilitar la inscripción de los jugadores a los torneos
+            \item Facilitar la obtención de estadísticas de interés para los usuarios y para el equipo organizador.
+            \item Ser un vehículo de divulgación de los torneos de Yu-Gi-Oh!.
+            \item Facilitar la creación y mantenimiento de torneos, partidas y rondas. 
+\end{enumerate}
+
+	\section{Requerimientos t\'ecnicos}
+	
+	Requerimientos m\'inimos del sistema:
+	
+	\begin{enumerate}
+		\item Procesador: Intel(R) Core(TM) i3-4210M CPU @ 260GHz 
+		\item Memoria instalada (RAM): 4.00GB
+	\end{enumerate}
+	
+	\section{Requerimientos de software}
+	
+	Se necesita tener los siguientes softwares instalados:
+	
+	\begin{enumerate}
+		\item \verb|MySQL 8.0.24|
+        \item \verb|Navicat Premiun 11.2.6| u otro sistema de gestión con soporte MySQL.
+		\item \verb|Python 3.7| o superior (se ejecutó con versiones \verb|3.9| y \verb|3.9.5| también)
+		\item \verb| Django 3.2|
+		\item Las librer\'ias: \verb|betterforms|, \verb|compositefk|, \verb|cpkmodel|, \verb|six|
+		\item Alg\'un navegador web(Firefox,Google Chrome, etc.)	
+        \item Cualquiera de estos sistemas operativos: Windows, MacOS, Linux
+	\end{enumerate}	
+
+Se incluye en el código fuente del proyecto un archivo \verb|requirements.txt| con las versiones exactas de las librerías con que se desarrolló la aplicación. Para instalarlas abra una terminal y ejecute 
+
+\verb|>> pip install requirements.txt|
+
+También puede instalarlas utilizando los siguientes comandos:
+	\begin{enumerate}
+		\item[] \textbf{betterforms:}  \verb|pip install django-betterforms|
+		\item[] \textbf{compositefk:} \verb|pip install django-composite-foreignkey|
+		\item[] \textbf{cpkmodel:} \verb|pip install django-compositepk-model|
+        \item[] \textbf{six:} \verb|pip install six|
+        \item[] \textbf{mysqlclient:} \verb|pip install mysqlclient|
+	\end{enumerate}	
+	
+
+	Para el caso de \verb|betterforms| debe realizarse una peque\~{n}a correci\'on despu\'es de la instalación. Se debe acceder al archivo \verb|multiform.py| y rectificar los imports para que quede de la siguiente forma:
+	
+		\begin{figure}[h]
+			\begin{center}
+				\includegraphics[width =12.0cm]{betterforms.png}
+			\end{center}
+		\end{figure}
+	
+	\section{Forma de instalar la aplicaci\'on}
+	
+	Para proceder a la instalación de la aplicación y puesta a punto de partida para su producción deben seguirse los siguientes pasos:
+	
+	\begin{enumerate}
+		\item Ejecutar el archivo \verb|yugioh_database.sql| para crear la base de datos
+		\item Cambiar en el archivo \verb|torneos_de_yugioh/settings.py| la contrase\~{n}a y el nombre de usuario  por las credenciales  que tiene el servidor de MySQL en la computadora que se ejecute.
+		\item Ejecutar los comandos \verb|python manage.py makemigrations| y \verb|python manage.py migrate| en ese mismo orden.
+		\item Crear un superusuario mediante el comando \verb|python manage.py createsuperuser|.
+		\item Ejecutar el comando \verb|python manage.py runserver| para correr la aplicaci\'on .
+	\end{enumerate}
+	
+	\section{Explicaci\'on de las opciones del sistema}
+
+    El sistema Torneos de Yu-Gi-Oh! cuenta con tres (3) tipos de usuarios: jugador, administrador de partidas, y administrador de torneos. Estos son los tres actores fundamentales en el software, algunos como mayor nivel de acceso que otro en dependencia de sus intereses y funciones.
+
+    Un jugador puede inscribirse en torneos a través de la aplicación web, ver todas las estadísticas o consultas que constituyeron requerimientos informacionales en el análisis y especificación de requerimientos llevado a cabo en épocas tempranas del proyecto. Además, los jugadores pueden registrar sus decks con los que competirán en las partidas. 
+
+    Los administradores de torneos, y de partidas son designados por el superusuario inicial o por los propios administradores utilizando formularios. Los administradores de torneos tienen el permiso para la creación, eliminación y actualización de torneos, partidas, rondas. A su vez los administradores de partidas tienen permisos para la gestión de partidas. Ambos tienen acceso a las consultas antes mencionadas.
+
+    \subsection{Registro e ingreso de cuentas de usuarios}
+
+    Para el ingreso de cuentas de usuarios  se tiene el siguiente formulario para todos los usuarios, donde es necesario que se introduzca el nombre de usuario registrado y la contraseña del mismo. La página de ingreso se muestra a continuación:
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=8cm]{login.png}
+\end{figure}
+    
+    En caso de que las credenciales del usuario sean correctas esta página redireccionará a la página de inicio del sistema que se muestra a continuación:
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=8cm]{index.png}
+\end{figure}
+
+Como se observa en la página de Inicio se tiene una cabecera que está presente en todas las páginas excepto las de crear cuenta de usuario e ingreso de los mismo. En la cabecerá estará todas las páginas a las que puede acceder un usuario en dependencia de sus permisos.
+
+A continuación se presentan las cabeceras de los tres (3) tipos de usuarios:
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=12cm]{admin_tp.png}
+    \caption{Cabecera de los administradores de torneos y partidas}
+\end{figure}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=12cm]{players.png}
+    \caption{Cabecera de los jugadores}
+\end{figure}
+
+Para el registro de usuarios como jugadores se tiene el siguiente formulario accesible desde la cabecera de los usuarios que no están autenticados.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=8cm]{signup.png}
+\end{figure}
+
+Dado que los torneos son internacionales no se tiene conocimiento de todas las provincias o municipios del mundo, por tanto, se deja a elección del usuario la introducción de estos campos. 
+
+Los administradores de torneos y el superusuarios son los que estan facultados para la designación de nuevos administradores de torneos y de partidas. Para ello se cuenta con dos formularios idénticos que están accesibles desde el acápite \verb|Designar| en la cabecera de estos tipos de usuarios. A continuación se presenta el formulario de registro de un nuevo administrador de partidas.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=10cm]{dadminp.png}
+\end{figure}
+
+\subsection{Gestión de Torneos}
+
+Todas las opciones referentes a la gestión de torneos está accesible desde la página Torneos disponible en las cabeceras. En esta página los administradores de torneos pueden crear torneos seleccionando el botón \verb|Crear torneo| en la parte inferior de la página Torneos que se muestra a continuación:
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=10cm]{torneos.png}
+    \caption{Página de Torneos}
+\end{figure}
+
+Para la creación de torneos debe introducir el ID del torneo, el nombre del torneo, la dirección y la fecha de inicio del mismo, a través de un formulario.
+
+Como se ve en la figura anterior se tienen dos tablas donde se muestran los torneos inciados y los que aún no lo han hecho. Los jugadores pueden inscribirse en torneo no iniciado seleccionando uno de sus decks o creando uno para la ocasión. Además de que los jugadores pueden ver las partidas programadas, y las rondas de los torneos desde el primer botón de las opciones: botón ``Ver''.
+
+Los administradores de torneos y los de partidas al seleccionar dicho botón pueden añadir participantes a rondas, crear partidas, editarlas, eliminarlas, definir los participantes que superan una ronda, y el lugar que ocupan en dicho torneo. Desde esa nueva página se pueden editar todos los parámetros de un torneo en específico. A continuación se muestra la página del torneo TOR-01 (torneo de prueba) 
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=10cm]{tor-01.png}
+    \caption{Página de Torneo TOR-01}
+\end{figure}
+
+Los administradores de partida solo pueden crear, editar y eliminar partidas. Para ello seleccionan la ronda de la  partida en cuestión utilizando los links de las rondas en la figura anterior y añadir la ronda utilizando el siguiente formulario.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=10cm]{partida.png}
+    \caption{Formulario para la creación y edición de las partidas en una ronda}
+\end{figure}
+
+Los administradores de torneo definen las rondas y quiénes pasan de ronda de acuerdo a sus resultados. Para ello se utilizan los botones de la tabla y los formularios correspondientes.
+
+\subsection{Gestión de consultas}
+
+Como parte de los requerimientos informacionales del proyecto se detectaron doce (12) consultas al sistema de gestión de torneos Yu-Gi-Oh!. Todas las consultas se han de realizar utilizando los formularios presentes en la página \verb|Consultas|, accesible desde las cabeceras. 
+
+Por ejemplo el formulario de la primera consulta que dice:\textit{ los $n$ jugadores con más decks en su poder (ordenados de mayor a menor)}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=10cm]{consulta1.png}
+    \caption{Formulario para la primera consulta}
+\end{figure}
+
+ Al hacer click en el botón Consultar debe recargar la página y mostrar las salidas correspondientes. Todas las consultas tienen formularios parecidos, existen consultas que se necesitan como parámetros fechas, estas deben estar en el siguiente formato AAAA-MM-DD HH:MM.
+
+\subsection{Mi Perfil}
+
+Todos los jugadores tienen disponible una sección en sus cabeceras conocida como Mi Perfil, desde allí pueden crear sus decks, eliminarlos, editarlos, y manejar todos los torneos en los que están inscritos.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=10cm]{misdecks.png}
+    \caption{Página de Mi Perfil, gestor de decks.}
+\end{figure}
+
+Además, se pueden modificar los datos personales del jugador y acceder a los torneos donde está inscrito, utilizando las opciones del menú superior izquierdo.
+
+\section{Explicaci\'on de las salidas del sistema}
+
+Todas las salidas del sistema son tablas que representan los datos que son solución de las peticiones de los usuarios. Si se retoma la primera consulta anteriormente mencionada y se ejecuta la consulta se obtiene la siguiente tabla:
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=10cm]{salida1.png}
+    \caption{Salida para la primera consulta}
+\end{figure}
+
+Como se observa en este ejemplo, se devuelve una tabla con el nombre del usuario y la cantidad de decks en su poder, ordenados de mayor a menor. Si tomamos otra consulta que pide la provincia con más campeones en un tiempo dado, se tiene la siguiente salida:
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=10cm]{salida2.png}
+    \caption{Salida para la  consulta}
+\end{figure}
+
+Como se observa se tiene el ID de la provincia, el nombre de la misma y la cantidad de campeones en ese tiempo. De forma análoga ocurre con el resto de las consultas.
+\end{document}

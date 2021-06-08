@@ -80,7 +80,7 @@ Torneos
                     </tbody>
                         {% for torneo in torneos_no_iniciados %}
                         <tr>
-                            {% if perms.torneos.add_admintorneos %}
+                            {% if perms.torneos.add_torneo %}
                                 <td>{{torneo.idt}}</td>
                             {% endif %}
                                 <td>{{torneo.nombret}}</td>
@@ -105,7 +105,7 @@ Torneos
                 </div>
             </div>
         </div>
-        {% if perms.torneos.add_admintorneos %}
+        {% if perms.torneos.add_torneo %}
             <br> <br>
             <div class="col-md-12 text-center">
                 <a class="btn btn-primary " href="{% url 'crear_torneo' %}">Crear Torneo</a>
